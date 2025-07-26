@@ -9,9 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Custom Cursor -->
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
+   
     
     <!-- Modern Navigation -->
     <nav>
@@ -107,7 +105,7 @@
                         
                         <div class="hero-stats">
                             <div class="stat">
-                                <span class="stat-number" data-number="20+">20+</span>
+                                <span class="stat-number" data-number="10+">10+</span>
                                 <span class="stat-label">Projects</span>
                             </div>
                             <div class="stat">
@@ -233,7 +231,7 @@
                     <p>Currently expanding my knowledge in artificial intelligence and machine learning while maintaining expertise in frontend development, Java, Python, and C programming. I enjoy solving complex problems and creating user-friendly applications.</p>
                     <div class="stats-grid">
                         <div class="stat-item">
-                            <span class="stat-number">20+</span>
+                            <span class="stat-number">10+</span>
                             <p>Projects</p>
                         </div>
                         <div class="stat-item">
@@ -859,42 +857,42 @@
             </div>
             <div class="achievements-container" id="achievements-container">
                 <div class="achievements-grid">
-                    <div class="achievement-card">
+                    <div class="achievement-card" id="achievement-github">
                         <i class="fab fa-github"></i>
                         <h3>GitHub Portfolio</h3>
                         <p>12+ repositories showcasing diverse programming projects and continuous learning</p>
                     </div>
-                    <div class="achievement-card">
+                    <div class="achievement-card" id="achievement-nasa">
                         <i class="fas fa-rocket"></i>
                         <h3>NASA Space Apps Challenge</h3>
                         <p>Participated in NASA Space Apps Challenge 2024 with Team Phoenix</p>
                     </div>
-                    <div class="achievement-card">
+                    <div class="achievement-card" id="achievement-academic">
                         <i class="fas fa-graduation-cap"></i>
                         <h3>Academic Progress</h3>
                         <p>3rd year Software Engineering student with strong programming foundation</p>
                     </div>
-                    <div class="achievement-card">
+                    <div class="achievement-card" id="achievement-languages">
                         <i class="fas fa-code"></i>
                         <h3>Multi-Language Proficiency</h3>
                         <p>Proficient in Java, Python, C, and frontend technologies</p>
                     </div>
-                    <div class="achievement-card">
+                    <div class="achievement-card" id="achievement-ai">
                         <i class="fas fa-brain"></i>
                         <h3>AI/ML Explorer</h3>
                         <p>Currently expanding knowledge in artificial intelligence and machine learning</p>
                     </div>
-                    <div class="achievement-card">
+                    <div class="achievement-card" id="achievement-team">
                         <i class="fas fa-users"></i>
                         <h3>Team Collaboration</h3>
                         <p>Experience working in teams on challenging projects and hackathons</p>
                     </div>
-                    <div class="achievement-card">
+                    <div class="achievement-card" id="achievement-problem">
                         <i class="fas fa-award"></i>
                         <h3>Problem Solver</h3>
                         <p>Strong analytical skills and ability to solve complex programming challenges</p>
                     </div>
-                    <div class="achievement-card">
+                    <div class="achievement-card" id="achievement-innovation">
                         <i class="fas fa-lightbulb"></i>
                         <h3>Innovation Focus</h3>
                         <p>Always exploring new technologies and creative solutions to real-world problems</p>
@@ -948,28 +946,24 @@
                 <!-- Contact Form -->
                 <div class="contact-form">
                     <form id="contactForm">
-                        <div class="form-group">
-                            <input type="text" id="name" name="name" required>
-                            <label for="name">Name</label>
-                        </div>
 
                         <div class="form-group">
-                            <input type="email" id="email" name="email" required>
                             <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="Your email address" required>
                         </div>
 
                         <div class="form-group">
-                            <input type="text" id="subject" name="subject" required>
                             <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" placeholder="Message subject" required>
                         </div>
 
                         <div class="form-group">
-                            <textarea id="message" name="message" rows="5" required></textarea>
                             <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="4" placeholder="Your message" required></textarea>
                         </div>
 
                         <button type="submit" class="submit-btn">
-                            Send Message
+                            <i class="fas fa-paper-plane"></i> Send Message
                         </button>
                     </form>
                 </div>
@@ -1270,6 +1264,76 @@
                 });
             }
         }
+        
+        // Make project cards interactive with staggered animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const projectCards = document.querySelectorAll('.project-card');
+            
+            // Apply staggered animation to make cards visible
+            projectCards.forEach((card, index) => {
+                // Set initial state for animation
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(40px)';
+                
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                    
+                    // Add elegant entrance animation sequence
+                    setTimeout(() => {
+                        // Animate heading (without underline animation)
+                        const heading = card.querySelector('h3');
+                        if (heading) {
+                            heading.style.backgroundSize = '200% auto';
+                            heading.style.backgroundPosition = 'right center';
+                            
+                            setTimeout(() => {
+                                heading.style.backgroundPosition = '';
+                                heading.style.backgroundSize = '';
+                            }, 1000);
+                        }
+                        
+                        // Animate tech tags with sequence
+                        const techTags = card.querySelectorAll('.project-tech span');
+                        techTags.forEach((tag, tagIndex) => {
+                            setTimeout(() => {
+                                tag.style.opacity = '0';
+                                tag.style.transform = 'translateY(10px)';
+                                
+                                setTimeout(() => {
+                                    tag.style.opacity = '1';
+                                    tag.style.transform = 'translateY(0)';
+                                }, 50);
+                            }, tagIndex * 100);
+                        });
+                        
+                        // Animate icon in stats
+                        setTimeout(() => {
+                            const statsIcon = card.querySelector('.project-stats i');
+                            if (statsIcon) {
+                                statsIcon.style.transform = 'translateY(-5px)';
+                                setTimeout(() => {
+                                    statsIcon.style.transform = '';
+                                }, 500);
+                            }
+                        }, 300);
+                    }, 300);
+                }, index * 180 + 300); // Staggered delay for each card
+                
+                // Touch interactions for mobile
+                card.addEventListener('touchstart', function() {
+                    this.style.transform = 'translateY(-8px) scale(1.02)';
+                    this.style.boxShadow = '0 15px 35px rgba(99, 102, 241, 0.2)';
+                });
+                
+                card.addEventListener('touchend', function() {
+                    setTimeout(() => {
+                        this.style.transform = '';
+                        this.style.boxShadow = '';
+                    }, 300);
+                });
+            });
+        });
 
         // Achievement scroll navigation
         function scrollAchievements(direction) {
@@ -1288,28 +1352,108 @@
                 });
             }
         }
+        
+        // Make achievement cards interactive
+        document.addEventListener('DOMContentLoaded', () => {
+            const achievementCards = document.querySelectorAll('.achievement-card');
+            
+            // Apply initial animation to make cards visible with cascade effect
+            achievementCards.forEach((card, index) => {
+                // Set initial state for animation
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                    
+                    // Add subtle shimmer effect after appearing
+                    setTimeout(() => {
+                        const icon = card.querySelector('i');
+                        if (icon) {
+                            icon.style.transition = 'all 0.8s ease';
+                            icon.style.boxShadow = '0 5px 15px rgba(74, 144, 226, 0.3)';
+                            
+                            setTimeout(() => {
+                                icon.style.boxShadow = '';
+                            }, 800);
+                        }
+                    }, 300);
+                }, index * 120 + 300); // Slightly longer delay between cards for better visual effect
+                
+                // Desktop hover effects
+                card.addEventListener('mouseenter', function() {
+                    const icon = this.querySelector('i');
+                    if (icon) {
+                        icon.style.transform = 'translateY(-8px) scale(1.1)';
+                        icon.style.boxShadow = '0 10px 25px rgba(74, 144, 226, 0.3)';
+                    }
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    const icon = this.querySelector('i');
+                    if (icon) {
+                        icon.style.transform = '';
+                        icon.style.boxShadow = '';
+                    }
+                });
+                
+                // Mobile touch interactions
+                card.addEventListener('touchstart', function() {
+                    const icon = this.querySelector('i');
+                    if (icon) {
+                        icon.style.transform = 'translateY(-5px) scale(1.05)';
+                        icon.style.boxShadow = '0 8px 20px rgba(74, 144, 226, 0.25)';
+                    }
+                });
+                
+                card.addEventListener('touchend', function() {
+                    const icon = this.querySelector('i');
+                    if (icon) {
+                        setTimeout(() => {
+                            icon.style.transform = '';
+                            icon.style.boxShadow = '';
+                        }, 300);
+                    }
+                });
+            });
+        });
 
         // Hide/show scroll buttons based on scroll position
         document.addEventListener('DOMContentLoaded', () => {
-            const container = document.getElementById('projects-container');
-            const leftBtn = document.querySelector('.scroll-left');
-            const rightBtn = document.querySelector('.scroll-right');
+            const projectsContainer = document.getElementById('projects-container');
+            const projectsSection = document.querySelector('#projects');
+            const projectsLeftBtn = projectsSection.querySelector('.scroll-left');
+            const projectsRightBtn = projectsSection.querySelector('.scroll-right');
             
-            function updateScrollButtons() {
-                const { scrollLeft, scrollWidth, clientWidth } = container;
+            function updateProjectsScrollButtons() {
+                const { scrollLeft, scrollWidth, clientWidth } = projectsContainer;
                 
-                leftBtn.style.opacity = scrollLeft <= 0 ? '0.5' : '1';
-                leftBtn.style.pointerEvents = scrollLeft <= 0 ? 'none' : 'auto';
+                projectsLeftBtn.style.opacity = scrollLeft <= 0 ? '0.5' : '1';
+                projectsLeftBtn.style.pointerEvents = scrollLeft <= 0 ? 'none' : 'auto';
                 
-                rightBtn.style.opacity = scrollLeft >= scrollWidth - clientWidth ? '0.5' : '1';
-                rightBtn.style.pointerEvents = scrollLeft >= scrollWidth - clientWidth ? 'none' : 'auto';
+                projectsRightBtn.style.opacity = scrollLeft >= scrollWidth - clientWidth - 10 ? '0.5' : '1';
+                projectsRightBtn.style.pointerEvents = scrollLeft >= scrollWidth - clientWidth - 10 ? 'none' : 'auto';
             }
             
-            container.addEventListener('scroll', updateScrollButtons);
-            updateScrollButtons(); // Initial check
+            projectsContainer.addEventListener('scroll', updateProjectsScrollButtons);
+            updateProjectsScrollButtons(); // Initial check
+            
+            // Enhanced mobile touch interaction for scroll buttons
+            if (window.innerWidth <= 768) {
+                [projectsLeftBtn, projectsRightBtn].forEach(btn => {
+                    btn.addEventListener('touchstart', function() {
+                        this.style.transform = 'scale(0.95)';
+                    });
+                    
+                    btn.addEventListener('touchend', function() {
+                        this.style.transform = '';
+                    });
+                });
+            }
             
             // Update on window resize
-            window.addEventListener('resize', updateScrollButtons);
+            window.addEventListener('resize', updateProjectsScrollButtons);
 
             // Achievements scroll buttons
             const achievementsContainer = document.getElementById('achievements-container');
@@ -1340,8 +1484,62 @@
             const contactForm = document.getElementById('contactForm');
             
             if (contactForm) {
+                // Add input validation
+                const formInputs = contactForm.querySelectorAll('input, textarea');
+                formInputs.forEach(input => {
+                    input.addEventListener('blur', function() {
+                        this.classList.add('touched');
+                        validateInput(this);
+                    });
+                    
+                    input.addEventListener('input', function() {
+                        if (this.classList.contains('touched')) {
+                            validateInput(this);
+                        }
+                    });
+                });
+                
+                function validateInput(input) {
+                    const formGroup = input.closest('.form-group');
+                    if (input.validity.valid) {
+                        formGroup.classList.remove('invalid');
+                        formGroup.classList.add('valid');
+                    } else {
+                        formGroup.classList.remove('valid');
+                        formGroup.classList.add('invalid');
+                    }
+                }
+                
                 contactForm.addEventListener('submit', function(e) {
                     e.preventDefault();
+                    
+                    // Validate all fields
+                    const formInputs = this.querySelectorAll('input, textarea');
+                    let isValid = true;
+                    
+                    formInputs.forEach(input => {
+                        input.classList.add('touched');
+                        validateInput(input);
+                        if (!input.validity.valid) {
+                            isValid = false;
+                        }
+                    });
+                    
+                    if (!isValid) {
+                        // If form is invalid, show error message and stop
+                        const submitBtn = this.querySelector('.submit-btn');
+                        const originalText = submitBtn.innerHTML;
+                        
+                        submitBtn.innerHTML = '<i class="fas fa-exclamation-circle"></i><span>Please fix errors</span>';
+                        submitBtn.style.background = 'linear-gradient(135deg, #e25c4a, #d32f2f)';
+                        
+                        setTimeout(() => {
+                            submitBtn.innerHTML = originalText;
+                            submitBtn.style.background = '';
+                        }, 2000);
+                        
+                        return;
+                    }
                     
                     const formData = new FormData(this);
                     const name = formData.get('name');
@@ -1366,33 +1564,58 @@ Email: ${email}`;
                     // Create mailto link
                     const mailtoLink = `mailto:sameul.barishal@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
                     
-                    // Open email client
-                    window.location.href = mailtoLink;
-                    
-                    // Show success feedback
-                    const submitBtn = this.querySelector('.submit-btn');
-                    const originalText = submitBtn.innerHTML;
-                    
-                    submitBtn.innerHTML = '<i class="fas fa-check"></i><span>Message Sent!</span>';
-                    submitBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
-                    
-                    setTimeout(() => {
-                        submitBtn.innerHTML = originalText;
-                        submitBtn.style.background = '';
-                        this.reset();
-                    }, 3000);
+                    try {
+                        // Show sending state
+                        const submitBtn = this.querySelector('.submit-btn');
+                        const originalText = submitBtn.innerHTML;
+                        submitBtn.disabled = true;
+                        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span>Sending...</span>';
+                        
+                        // Open email client
+                        window.location.href = mailtoLink;
+                        
+                        // Show success feedback
+                        setTimeout(() => {
+                            submitBtn.disabled = false;
+                            submitBtn.innerHTML = '<i class="fas fa-check"></i><span>Message Sent!</span>';
+                            submitBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+                            
+                            setTimeout(() => {
+                                submitBtn.innerHTML = originalText;
+                                submitBtn.style.background = '';
+                                this.reset();
+                                
+                                // Reset validation classes
+                                const formGroups = this.querySelectorAll('.form-group');
+                                formGroups.forEach(group => {
+                                    group.classList.remove('valid', 'invalid');
+                                });
+                                
+                                formInputs.forEach(input => {
+                                    input.classList.remove('touched');
+                                });
+                            }, 3000);
+                        }, 1000);
+                    } catch (error) {
+                        console.error('Error sending email:', error);
+                        const submitBtn = this.querySelector('.submit-btn');
+                        submitBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i><span>Error sending</span>';
+                        submitBtn.style.background = 'linear-gradient(135deg, #e25c4a, #d32f2f)';
+                        
+                        setTimeout(() => {
+                            submitBtn.innerHTML = originalText;
+                            submitBtn.style.background = '';
+                            submitBtn.disabled = false;
+                        }, 3000);
+                    }
                 });
             }
 
-            // Animate contact orbits
-            const orbits = document.querySelectorAll('.contact-planet');
-            orbits.forEach((planet, index) => {
-                planet.style.animationDelay = `${index * 0.2}s`;
-            });
+            // No contact orbits animation needed
 
-            // Input animations
-            const inputs = document.querySelectorAll('.input-group input, .input-group textarea, .input-group select');
-            inputs.forEach(input => {
+            // Form field focus effect
+            const formInputs = document.querySelectorAll('.form-group input, .form-group textarea');
+            formInputs.forEach(input => {
                 input.addEventListener('focus', function() {
                     this.parentElement.classList.add('focused');
                 });
@@ -1433,7 +1656,6 @@ Email: ${email}`;
                 });
             });
         });
-    </script>
     </script>
     <script src="script.js"></script>
 </body>

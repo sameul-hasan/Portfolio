@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function initializePortfolio() {
-    // Initialize scroll parallax for background elements
+    // Initialize    // Scroll parallax for background elements
     window.addEventListener('scroll', throttle(() => {
         const scrolled = window.pageYOffset;
         const parallaxElements = document.querySelectorAll('.floating-icon');
@@ -16,7 +16,7 @@ function initializePortfolio() {
             const yPos = -(scrolled * speed);
             element.style.transform = `translateY(${yPos}px)`;
         });
-    }, 16));
+    }, 16));es
     initNavigation();
     initScrollEffects();
     initTypingAnimation();
@@ -334,13 +334,11 @@ function debounce(func, wait, immediate) {
 
 // Enhanced animations and interactions
 document.addEventListener('DOMContentLoaded', function() {
-    // Add hover effects to project cards - without underline animation
+    // Add hover effects to project cards
     const projectCards = document.querySelectorAll('.project-card');
     projectCards.forEach(card => {
         card.addEventListener('mouseenter', function() {
             this.style.transform = 'translateY(-10px) scale(1.02)';
-            
-            // No underline animation
         });
         
         card.addEventListener('mouseleave', function() {
