@@ -2105,6 +2105,12 @@ section {
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    background: linear-gradient(135deg, 
+        rgba(74, 144, 226, 0.08) 0%, 
+        rgba(138, 43, 226, 0.08) 100%);
+    padding: 2rem;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .contact-item {
@@ -2116,7 +2122,7 @@ section {
 .contact-icon {
     width: 50px;
     height: 50px;
-    background: #4a90e2;
+    background: linear-gradient(135deg, #4a90e2, #8a2be2);
     border-radius: 12px;
     display: flex;
     align-items: center;
@@ -2124,19 +2130,34 @@ section {
     color: white;
     font-size: 1.2rem;
     flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.contact-icon:hover {
+    transform: translateY(-2px);
 }
 
 .contact-details h4 {
     margin: 0 0 0.5rem 0;
     font-size: 1.1rem;
     font-weight: 600;
-    color: #2c3e50;
+    color: #072955;
 }
 
 .contact-details a {
     color: #4a90e2;
     text-decoration: none;
     transition: color 0.3s ease;
+    font-weight: 500;
+}
+
+.contact-details a:hover {
+    color: #8a2be2;
+}
+
+.contact-details span {
+    color: #cbd5e0;
+    font-weight: 500;
 }
 
 .contact-details a:hover {
@@ -2149,40 +2170,50 @@ section {
 
 /* Contact Form */
 .contact-form {
-    background: white;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, 
+        rgba(74, 144, 226, 0.08) 0%, 
+        rgba(138, 43, 226, 0.08) 100%);
+    padding: 2.5rem;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .form-group {
     position: relative;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 .form-group input,
 .form-group textarea {
     width: 100%;
-    padding: 1rem 0 0.5rem 0;
-    border: none;
-    border-bottom: 2px solid #e9ecef;
-    background: transparent;
+    padding: 1.2rem 1rem;
+    border: 1px solid rgba(74, 144, 226, 0.2);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.1);
     font-size: 1rem;
+    color: #e2e8f0;
     outline: none;
-    transition: border-color 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
     border-color: #4a90e2;
+    background: rgba(74, 144, 226, 0.05);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: rgba(226, 232, 240, 0.6);
 }
 
 .form-group label {
     position: absolute;
-    top: 1rem;
-    left: 0;
-    color: #6c757d;
+    top: 1.2rem;
+    left: 1rem;
+    color: rgba(226, 232, 240, 0.7);
     font-size: 1rem;
+    font-weight: 500;
     pointer-events: none;
     transition: all 0.3s ease;
 }
@@ -2191,17 +2222,19 @@ section {
 .form-group textarea:focus + label,
 .form-group input:not(:placeholder-shown) + label,
 .form-group textarea:not(:placeholder-shown) + label {
-    top: 0;
-    font-size: 0.875rem;
+    top: -0.5rem;
+    left: 0.8rem;
+    font-size: 0.75rem;
     color: #4a90e2;
+    font-weight: 600;
 }
 
 .submit-btn {
-    background: #4a90e2;
+    background: linear-gradient(135deg, #4a90e2, #8a2be2);
     color: white;
     border: none;
-    padding: 1rem 2rem;
-    border-radius: 8px;
+    padding: 1.2rem 2rem;
+    border-radius: 12px;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
@@ -2210,8 +2243,8 @@ section {
 }
 
 .submit-btn:hover {
-    background: #357abd;
     transform: translateY(-2px);
+    opacity: 0.9;
 }
 
 /* Social Links */
