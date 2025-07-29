@@ -223,7 +223,6 @@ This project is open source and available under the [MIT License](LICENSE).
 - 📧 Email: [sameul.barishal@gmail.com](mailto:sameul.barishal@gmail.com)
 - 💼 LinkedIn: [linkedin.com/in/sameulhasan](https://www.linkedin.com/in/sameulhasan/)
 - 🐱 GitHub: [github.com/sameul-hasan](https://github.com/sameul-hasan)
-- 📱 Phone: +8801707654740
 - 📍 Location: Dhaka, Bangladesh
 
 ## 🚀 Live Demo
