@@ -1,0 +1,151 @@
+{
+  "name": "My workflow 2",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "00faacd9-0119-43ea-9f0e-12ae4989b3b1",
+      "name": "When chat message received",
+      "webhookId": "a752a05e-2aa0-4992-950e-814933e8e375"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Questions: \"{{ $json.chatInput }}\"\n\n\nDecide the intent and required sub-agents. Assign them tasks explicitly. Wait for their output before replying. \n\nNever answer directly unless no tool is needed.\n\n\nYou must:\n\n- Always use tools when asked or when actions are needed.\n\n- Wait for the real tool result before replying.\n\n- Speak to me like I’m your best friend.",
+        "options": {
+          "systemMessage": "You are the Main AI Agent responsible for coordinating other specialized sub-agents to complete complex user requests.\n\n\nYou have access to the following sub-agents/tools:\n\n\n📚 ResearchAgent  \n\nHandles any tasks related to gathering information, calling APIs, or fetching data.\n\n\n📄 DocumentAgent  \n\nManages all document-related tasks, including summarization, editing, analysis, or transformation.\n\n\n---\n\n\n🔧 Your Role:\n\n- Never perform tasks directly.\n\n- Always delegate to sub-agents using tools when applicable.\n\n- Explicitly assign the task to the right agent, with a clear goal and context.\n\n- Wait for the tool’s result before replying to the user.\n\n- Never guess or assume what a tool would say—only reply after you get real output.\n\n- Be friendly, clear, and helpful when responding.\n\n\n---\n\n\n🧩 Sub-Agent Notes:\n\n- Tools return real output and must be awaited.\n\n- DocumentAgent should always ask for the document if it hasn’t been provided."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "c39d2fc9-b163-404d-a093-c3400cf5cafc",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        96,
+        208
+      ],
+      "id": "6b2e03aa-30b8-4893-9763-89280fc9c1dd",
+      "name": "Groq Chat Model",
+      "credentials": {
+        "groqApi": {
+          "id": "AgoWAZcOv9hus7LB",
+          "name": "Groq account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        304,
+        256
+      ],
+      "id": "876a2693-00f5-49c8-a79b-f6d895ec51ec",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "description": "Manages all document-related tasks, including summarization, editing, analysis, or transformation.\n\n",
+        "workflowId": {
+          "__rl": true,
+          "value": "RIQWlM5oaUsUNtyx",
+          "mode": "list",
+          "cachedResultName": "My Sub-Workflow 2"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.2,
+      "position": [
+        576,
+        256
+      ],
+      "id": "54c5bd43-75ab-40fb-a51a-b6254ec19f9a",
+      "name": "ResearchAgent"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ResearchAgent": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "f8d8b965-6513-4eb9-a3cd-d85fdf41ec18",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "22f16ad4b75f2fd171fa9a4c0f5cafd313a9b6ddc8333cb03132a148067c5d0b"
+  },
+  "id": "JoKLq4e8MCaDOnhU",
+  "tags": []
+}
