@@ -1,0 +1,189 @@
+{
+  "name": "everyday rendom code idea",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 7,
+              "triggerAtMinute": 30
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -80,
+        -40
+      ],
+      "id": "06507408-8a78-43b2-aea6-d67da4fddb20",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "chatId": "6384152073",
+        "text": "=💡 Daily Idea code Bot:\n\n{{ $json.output }}\n",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        780,
+        20
+      ],
+      "id": "5f756ade-54c8-4ce1-a142-3a165f859dd0",
+      "name": "Send a text message",
+      "webhookId": "2f82237e-9779-447c-a218-9fe6efc6bf22",
+      "credentials": {
+        "telegramApi": {
+          "id": "1wbOgjrVCcrf4eKD",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=I will give you 3 keywords. Using those, generate a simple and creative coding project idea. Make sure the project is:\n\n- Beginner to intermediate level\n- give a project title\n- Uses all 3 keywords in some way\n- Described clearly in bullet points\n- No more than 150 words\n- Practical and fun\n- use emoji \n- web base idea or python\n\nDo NOT explain anything else. Just output the idea using the keywords I provide. Wait for the input in the following format:\n\n🧩 Keywords: {{ $json .output }}\n",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        440,
+        40
+      ],
+      "id": "c8a9c06f-9d14-4f4f-a6a3-864373ed2105",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": "llama-3.3-70b-versatile",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        420,
+        240
+      ],
+      "id": "6c75ce13-5629-4bc8-8255-87b70728043a",
+      "name": "Groq Chat Model",
+      "credentials": {
+        "groqApi": {
+          "id": "Um1L6ugAj6C9Q81l",
+          "name": "Groq account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=genaret always new random only 3 keyword of creative project (only 3 words no extra things)",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        120,
+        20
+      ],
+      "id": "2128a5bc-3326-409f-ba8f-9e97dec150f0",
+      "name": "AI Agent1"
+    },
+    {
+      "parameters": {
+        "model": "llama-3.1-8b-instant",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        120,
+        240
+      ],
+      "id": "9d15f8b1-3a0b-4a25-8682-ed07e7390acb",
+      "name": "Groq Chat Model1",
+      "credentials": {
+        "groqApi": {
+          "id": "azb3zzCh7p9iddE7",
+          "name": "Groq account 2"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Dhaka",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "ZzBoEtZkhStR6Hp7"
+  },
+  "versionId": "7a89f0cb-547c-47a6-9204-568daa6bf731",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "47602d97fabdb2b1a408047f14a349737380c49fbf81b41a1e12433e4923c3e1"
+  },
+  "id": "ZzBoEtZkhStR6Hp7",
+  "tags": []
+}

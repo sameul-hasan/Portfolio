@@ -1,0 +1,146 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -96,
+        0
+      ],
+      "id": "4ce80f0f-a180-4452-a896-fc8ec5a0cb30",
+      "name": "When chat message received",
+      "webhookId": "77906913-1295-4d91-8126-26bc5b288a26"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        80,
+        208
+      ],
+      "id": "3973aec4-dd85-49ec-96d4-f2c96641fc5a",
+      "name": "Groq Chat Model",
+      "credentials": {
+        "groqApi": {
+          "id": "AgoWAZcOv9hus7LB",
+          "name": "Groq account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "contextWindowLength": "={{ $json }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        224,
+        208
+      ],
+      "id": "8bfbbf5c-982a-4c54-8265-c2fcd88627e7",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "You are a helpful assistant\nYou are the Main AI Agent responsible for coordinating other specialized sub-agents to complete complex user requests.\n\n\nYou have access to the following sub-agents/tools:\n\n\n📚 ResearchAgent  \n\nHandles any tasks related to gathering information, calling APIs, or fetching data.\n\n\n📄 DocumentAgent  \n\nManages all document-related tasks, including summarization, editing, analysis, or transformation.\n\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.1,
+      "position": [
+        208,
+        32
+      ],
+      "id": "5528f01c-bdfd-47b7-8a07-c7d0bfb8983b",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "limit": 10,
+        "filters": {}
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        400,
+        224
+      ],
+      "id": "fd421644-a2b4-4b27-8655-b92fe5f9647c",
+      "name": "Get many messages in Gmail",
+      "webhookId": "c8956f6b-e285-4085-95dd-f8e7984ca8fa",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "qtch0ESfB4wm10x6",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many messages in Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "0a46852d-5a51-4637-bc33-6dec0e308cb4",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "22f16ad4b75f2fd171fa9a4c0f5cafd313a9b6ddc8333cb03132a148067c5d0b"
+  },
+  "id": "k72uBpo128fXYXfT",
+  "tags": []
+}

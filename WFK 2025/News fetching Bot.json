@@ -1,0 +1,232 @@
+{
+  "name": "News fetching Bot",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -272,
+        -32
+      ],
+      "id": "7c46c726-0268-45d7-897e-951ee65bf8ed",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "url": "https://hacker-news.firebaseio.com/v0/topstories.json",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -64,
+        -32
+      ],
+      "id": "ffcecdd2-e640-4463-8117-b404ca71c59c",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all().map((item) => item.json);\n\nconst result = items.slice(0, 5).map((id) => ({ json: { id } }));\n\nreturn result;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        144,
+        -32
+      ],
+      "id": "5935e9a7-6084-47e1-81a9-60916b50cc12",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        352,
+        -32
+      ],
+      "id": "60def307-338c-497c-a670-d97675e2137e",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "url": "=https://hacker-news.firebaseio.com/v0/item/{{ $json.id }}.json",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "UserAgent",
+              "value": "Mozila/0.5"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        336,
+        -224
+      ],
+      "id": "0b236783-29e5-4a18-bfa8-1e4750b1aaf7",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=https://hacker-news.firebaseio.com/v0/topstories.json\n\n\n\nconst items = $input.all().map((item) => item.json);\n\nconst result = items.slice(0, 5).map((id) => ({ json: { id } }));\n\nreturn result;\n\n\nhttps://hacker-news.firebaseio.com/v0/item/{{ $json.id }}.json\n\n\n\n\nYou are a professional news summarizer.\n\n\nSummarize the following news article into no more than 3 concise sentences\n\nThen, extract 3 to 5*key topics or keyword that represent the article's main focus.\n\n\nThe summary must be:\n\n- Accurate and faithful to the original content\n\n- Free of repetition or filler\n\n- Written in neutral journalistic tone\n\n- Easily understandable to a general audience\n\n\nReturn your answer in the following JSON format:\n\n\n{\n\n  \"summary\": \"<your summarized content here>\",\n\n  \"keywords\": [\"keyword1\", \"keyword2\", \"keyword3\"]\n\n}\n\n\nArticle:\n\n{{ $json.content }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.1,
+      "position": [
+        560,
+        -192
+      ],
+      "id": "41be4be4-06d1-4790-951e-a56cbdcc7b2c",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": "llama-3.3-70b-versatile",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        560,
+        0
+      ],
+      "id": "f0555674-4ce5-4801-8d0d-c9d2cb328967",
+      "name": "Groq Chat Model",
+      "credentials": {
+        "groqApi": {
+          "id": "Ok5Lwm9ZfSQ5gRL5",
+          "name": "Groq account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "toJson",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        912,
+        -192
+      ],
+      "id": "bcdd25d6-3c18-4074-8929-5f02bf9a1d3c",
+      "name": "Convert to File"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "3d9d1a53-3175-45ea-ba72-8bd4b8f9a856",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "067fedf68dd00f717899c660b3660c8a9aa654c6d0a3ce064e9974fd93905e4b"
+  },
+  "id": "IYMF5q03PhYKp5yo",
+  "tags": []
+}
