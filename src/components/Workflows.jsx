@@ -89,7 +89,7 @@ export default function Workflows() {
                     File: <span className="text-slate-300">{bot.fileName}</span>
                   </span>
                   <a
-                    href={bot.downloadFile}
+                    href={`${import.meta.env.BASE_URL}${bot.downloadFile}`}
                     download={bot.fileName}
                     className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-indigo-600 text-white text-xs font-semibold border border-indigo-500/30 hover:border-indigo-500 flex items-center gap-2 transition-all shadow-sm group/btn"
                   >

@@ -122,7 +122,7 @@ export default function Hero() {
               <div className="relative w-64 sm:w-80 h-80 sm:h-96 rounded-2xl overflow-hidden glass-card p-2 border border-cyan-500/30 shadow-2xl">
                 <div className="w-full h-full rounded-xl overflow-hidden bg-slate-950 relative">
                   <img
-                    src="Sameul.png"
+                    src={`${import.meta.env.BASE_URL}Sameul.png`}
                     alt="Sameul Hasan"
                     className="w-full h-full object-cover object-top filter contrast-105 group-hover:scale-105 transition duration-700 ease-out"
                     loading="eager"

@@ -100,7 +100,7 @@ export default function Certifications() {
                     {/* Certificate Thumbnail */}
                     <div className="w-full md:w-64 shrink-0 rounded-2xl overflow-hidden bg-slate-950 border border-slate-800/80 group">
                       <img
-                        src={cert.image}
+                        src={`${import.meta.env.BASE_URL}${cert.image}`}
                         alt={cert.title}
                         className="w-full h-44 object-cover object-center group-hover:scale-105 transition-transform duration-500"
                         loading="lazy"
