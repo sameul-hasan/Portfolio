@@ -582,6 +582,18 @@ function renderCertificationsSlider() {
               </span>
             `).join('')}
           </div>
+
+          <div class="pt-2">
+            <a
+              href="https://sameul-hasan.github.io/Cirtification-I-Have/"
+              target="_blank"
+              rel="noreferrer"
+              class="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-cyan-400 hover:text-cyan-300 transition"
+            >
+              <span>View Credential in Live Gallery</span>
+              <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -598,6 +610,7 @@ function renderCertificationsSlider() {
 
   updateCertPosition();
   startCertAutoSlide();
+  lucide.createIcons();
 }
 
 function updateCertPosition() {
