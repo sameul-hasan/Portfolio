@@ -1,22 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth dark">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sameul Hasan | Software Engineering Student & Developer</title>
-  <meta name="description" content="Portfolio of Md Sameul Hasan — a Software Engineering student at Daffodil International University sharing selected projects, skills, and learning journey." />
-  <meta name="keywords" content="Sameul Hasan, Software Engineer, AI Developer, Full-Stack Developer, DIU Robotics Club, NASA Space Apps, SLM Canvas, SkinX, Web Developer" />
+  <title>Sameul Hasan | Developer Portfolio</title>
+  <meta name="description" content="Portfolio of Md Sameul Hasan — Software Engineering student building practical web and AI-assisted tools." />
+  <meta name="keywords" content="Sameul Hasan, Software Engineer, AI Developer, Full-Stack Developer, Portfolio" />
   <meta name="author" content="Md Sameul Hasan" />
+  <meta name="theme-color" content="#f8fafc" />
 
-  <!-- Favicon & Theme -->
-  <meta name="theme-color" content="#020b1f" />
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2338bdf8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'></polygon></svg>" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230f172a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'></polygon></svg>' />
 
-  <!-- Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      darkMode: 'class',
       theme: {
         extend: {
           fontFamily: {
@@ -29,1069 +26,210 @@
     }
   </script>
 
-  <!-- Lucide Icons & Confetti -->
   <script src="https://unpkg.com/lucide@latest"></script>
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
 
-  <!-- Custom Styles -->
   <link rel="stylesheet" href="style.css" />
 </head>
+<body class="bg-slate-50 text-slate-900 font-sans antialiased selection:bg-sky-100 selection:text-sky-900">
+  <div class="pointer-events-none fixed inset-0 -z-10 overflow-hidden" aria-hidden="true">
+    <div class="absolute -top-24 -left-24 h-80 w-80 rounded-full bg-sky-200/55 blur-3xl"></div>
+    <div class="absolute top-1/3 right-0 h-80 w-80 rounded-full bg-indigo-200/50 blur-3xl"></div>
+    <div class="absolute -bottom-20 left-1/3 h-72 w-72 rounded-full bg-cyan-100/70 blur-3xl"></div>
+  </div>
 
-<body class="bg-[#020b1f] text-slate-100 font-sans selection:bg-sky-500/20 selection:text-sky-300">
-
-  <!-- NAVBAR -->
-  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16 sm:h-20">
-        
-        <!-- Logo -->
-        <a href="#home" class="flex items-center gap-2.5 group">
-          <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-sky-500 to-blue-600 flex items-center justify-center text-white shadow-lg shadow-sky-500/20 group-hover:scale-105 transition-transform">
-            <i data-lucide="terminal" class="w-5 h-5"></i>
-          </div>
-          <div class="flex flex-col">
-            <span class="font-display font-bold text-lg text-white group-hover:text-sky-400 transition-colors">
-              Sameul Hasan
-            </span>
-            <span class="text-[10px] font-mono text-sky-400 -mt-1 tracking-wider">
-              SOFTWARE ENGINEERING STUDENT
-            </span>
-          </div>
+  <header id="navbar" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div class="mt-3 flex h-16 items-center justify-between rounded-2xl border border-white/60 bg-white/70 px-4 shadow-sm backdrop-blur-xl">
+        <a href="#home" class="flex items-center gap-3">
+          <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-slate-900 text-sm font-bold text-white">SH</span>
+          <span class="font-display text-base font-semibold text-slate-900">Sameul Hasan</span>
         </a>
 
-        <!-- Desktop Navigation -->
-        <nav class="hidden lg:flex items-center gap-6">
-          <a href="#home" class="nav-link text-xs font-mono text-slate-300 hover:text-sky-400 transition-colors">Home</a>
-          <a href="#about" class="nav-link text-xs font-mono text-slate-300 hover:text-sky-400 transition-colors">About</a>
-          <a href="#projects" class="nav-link text-xs font-mono text-slate-300 hover:text-sky-400 transition-colors">Projects</a>
-          <a href="#workflows" class="nav-link text-xs font-mono text-slate-300 hover:text-sky-400 transition-colors">n8n Bots</a>
-          <a href="#leadership" class="nav-link text-xs font-mono text-slate-300 hover:text-sky-400 transition-colors">Leadership</a>
-          <a href="#achievements" class="nav-link text-xs font-mono text-slate-300 hover:text-sky-400 transition-colors">Achievements</a>
-          <a href="#certifications" class="nav-link text-xs font-mono text-slate-300 hover:text-sky-400 transition-colors">Certifications</a>
-          <a href="#skills" class="nav-link text-xs font-mono text-slate-300 hover:text-sky-400 transition-colors">Skills</a>
-          <a href="#contact" class="nav-link text-xs font-mono text-slate-300 hover:text-sky-400 transition-colors">Contact</a>
+        <nav class="hidden items-center gap-6 text-sm font-medium text-slate-700 lg:flex" aria-label="Primary">
+          <a href="#about" class="nav-link hover:text-slate-950">About</a>
+          <a href="#skills" class="nav-link hover:text-slate-950">Skills</a>
+          <a href="#projects" class="nav-link hover:text-slate-950">Projects</a>
+          <a href="#contact" class="nav-link hover:text-slate-950">Contact</a>
         </nav>
 
-        <!-- Social Icons & CTA -->
-        <div class="hidden sm:flex items-center gap-3">
-          <a href="https://github.com/sameul-hasan" target="_blank" rel="noreferrer" class="p-2 rounded-xl bg-slate-900/80 border border-slate-800 text-slate-400 hover:text-white transition" aria-label="GitHub">
-            <i data-lucide="github" class="w-4 h-4"></i>
+        <div class="hidden items-center gap-2 sm:flex">
+          <a href="https://github.com/sameul-hasan" target="_blank" rel="noreferrer" class="rounded-lg border border-slate-200 bg-white/80 p-2 text-slate-600 transition hover:border-slate-300 hover:text-slate-900" aria-label="GitHub profile">
+            <i data-lucide="github" class="h-4 w-4"></i>
           </a>
-          <a href="https://www.linkedin.com/in/sameulhasan/" target="_blank" rel="noreferrer" class="p-2 rounded-xl bg-slate-900/80 border border-slate-800 text-slate-400 hover:text-sky-400 transition" aria-label="LinkedIn">
-            <i data-lucide="linkedin" class="w-4 h-4"></i>
+          <a href="https://www.linkedin.com/in/sameulhasan/" target="_blank" rel="noreferrer" class="rounded-lg border border-slate-200 bg-white/80 p-2 text-slate-600 transition hover:border-slate-300 hover:text-slate-900" aria-label="LinkedIn profile">
+            <i data-lucide="linkedin" class="h-4 w-4"></i>
           </a>
-          <a href="#contact" class="px-4 py-2 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-semibold text-xs shadow-md shadow-sky-500/20 transition-all">
-            Get In Touch
-          </a>
+          <a href="#contact" class="rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-800">Let’s Talk</a>
         </div>
 
-        <!-- Mobile Menu Toggle -->
-        <button id="mobile-menu-toggle" class="lg:hidden p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white" aria-label="Toggle menu">
-          <i data-lucide="menu" class="w-5 h-5"></i>
+        <button id="mobile-menu-toggle" class="rounded-lg border border-slate-200 bg-white/80 p-2 text-slate-700 lg:hidden" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+          <i data-lucide="menu" class="h-5 w-5"></i>
         </button>
       </div>
-
-      <!-- Mobile Dropdown -->
-      <div id="mobile-menu" class="hidden lg:hidden py-4 border-t border-slate-800/80 bg-slate-950/95 backdrop-blur-2xl rounded-b-2xl px-4 space-y-3">
-        <a href="#home" class="block text-sm font-mono text-slate-300 hover:text-sky-400 py-1">Home</a>
-        <a href="#about" class="block text-sm font-mono text-slate-300 hover:text-sky-400 py-1">About & Philosophy</a>
-        <a href="#projects" class="block text-sm font-mono text-slate-300 hover:text-sky-400 py-1">Featured Projects</a>
-        <a href="#workflows" class="block text-sm font-mono text-slate-300 hover:text-sky-400 py-1">n8n Automation Bots</a>
-        <a href="#leadership" class="block text-sm font-mono text-slate-300 hover:text-sky-400 py-1">Leadership</a>
-        <a href="#achievements" class="block text-sm font-mono text-slate-300 hover:text-sky-400 py-1">Achievements</a>
-        <a href="#certifications" class="block text-sm font-mono text-slate-300 hover:text-sky-400 py-1">Certifications</a>
-        <a href="#skills" class="block text-sm font-mono text-slate-300 hover:text-sky-400 py-1">Skills</a>
-        <a href="#contact" class="block text-sm font-mono text-slate-300 hover:text-sky-400 py-1">Contact</a>
+      <div id="mobile-menu" class="mt-2 hidden rounded-2xl border border-white/60 bg-white/90 p-4 shadow-sm backdrop-blur-xl lg:hidden">
+        <nav class="space-y-2 text-sm font-medium text-slate-700" aria-label="Mobile">
+          <a href="#about" class="block rounded-md px-2 py-1 hover:bg-slate-100">About</a>
+          <a href="#skills" class="block rounded-md px-2 py-1 hover:bg-slate-100">Skills</a>
+          <a href="#projects" class="block rounded-md px-2 py-1 hover:bg-slate-100">Projects</a>
+          <a href="#contact" class="block rounded-md px-2 py-1 hover:bg-slate-100">Contact</a>
+        </nav>
       </div>
     </div>
   </header>
 
   <main>
-    <!-- HERO SECTION -->
-    <section id="home" class="min-h-screen pt-28 pb-16 flex items-center relative overflow-hidden">
-      <!-- Glow Backgrounds -->
-      <div class="absolute top-1/4 left-1/4 -translate-x-1/2 w-96 h-96 bg-sky-500/10 rounded-full blur-3xl pointer-events-none"></div>
-      <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
-          <!-- Hero Left Column -->
-          <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-            
-            <!-- Availability Pill -->
-            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900/80 border border-sky-500/30 backdrop-blur-md shadow-sm">
-              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span class="text-xs font-mono text-sky-300">Open to internships, trainee roles, and collaborations</span>
-            </div>
-
-            <!-- Main Heading -->
-            <div class="space-y-2">
-              <h1 class="text-4xl sm:text-5xl lg:text-6xl font-display font-extrabold text-white tracking-tight leading-[1.1]">
-                Hi, I'm <span class="text-gradient">Sameul Hasan</span>
-              </h1>
-              <div class="h-10 sm:h-12 flex items-center justify-center lg:justify-start">
-                <span class="text-xl sm:text-2xl font-mono text-slate-300 font-semibold">
-                  &gt; <span id="typewriter-text" class="text-sky-400"></span><span class="animate-pulse text-sky-400">|</span>
-                </span>
-              </div>
-            </div>
-
-            <!-- Bio -->
-            <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto lg:mx-0">
-              I’m Sameul, a Software Engineering student at Daffodil International University. I build web products and AI-assisted tools for practical student and community use, and I currently serve as President of DIU Robotics Club.
-            </p>
-
-            <!-- CTAs -->
-            <div class="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-4">
-              <a href="#projects" class="px-6 py-3 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 text-white font-semibold text-sm shadow-lg shadow-sky-500/25 hover:shadow-sky-500/40 hover:scale-[1.02] transition-all flex items-center gap-2 group">
-                <span>See Selected Projects</span>
-                <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
-              </a>
-              <a href="#contact" class="px-6 py-3 rounded-xl glass-card text-slate-200 font-semibold text-sm hover:text-white hover:border-sky-500/40 transition-all">
-                Get In Touch
-              </a>
-            </div>
-
-            <!-- Metrics Badges -->
-            <div class="pt-6 grid grid-cols-2 gap-3 max-w-xs sm:max-w-sm mx-auto lg:mx-0">
-              <div class="p-3 rounded-xl bg-slate-900/50 border border-slate-800/80 backdrop-blur-sm text-left hover:border-sky-500/30 transition-all">
-                <div class="text-lg sm:text-xl font-display font-bold text-white tracking-tight">3.66</div>
-                <div class="text-xs font-medium text-sky-400 -mt-0.5">CGPA</div>
-                <div class="text-[10px] text-slate-400 font-mono mt-0.5">Out of 4.00</div>
-              </div>
-              <div class="p-3 rounded-xl bg-slate-900/50 border border-slate-800/80 backdrop-blur-sm text-left hover:border-sky-500/30 transition-all">
-                <div class="text-lg sm:text-xl font-display font-bold text-white tracking-tight truncate">NASA Space Apps</div>
-                <div class="text-xs font-medium text-sky-400 -mt-0.5">Global Nominee (2024)</div>
-                <div class="text-[10px] text-slate-400 font-mono mt-0.5">Barishal Division Team Winner</div>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- Hero Right Column -->
-          <div class="lg:col-span-5 flex flex-col items-center lg:items-end space-y-6">
-            
-            <!-- Visual Photo Card with Cyber Halo -->
-            <div class="relative group">
-              <div class="absolute -inset-1 bg-gradient-to-r from-sky-500 via-blue-500 to-violet-500 rounded-3xl blur-md opacity-40 group-hover:opacity-75 transition duration-500"></div>
-
-              <div class="relative w-64 sm:w-80 h-80 sm:h-96 rounded-2xl overflow-hidden glass-card p-2 border border-sky-500/30 shadow-2xl">
-                <div class="w-full h-full rounded-xl overflow-hidden bg-slate-950 relative">
-                  <img src="Sameul.png" alt="Sameul Hasan" class="w-full h-full object-cover object-top filter contrast-105 group-hover:scale-105 transition duration-700 ease-out" />
-                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
-                  
-                  <div class="absolute bottom-3 left-3 right-3 p-2.5 rounded-lg bg-slate-950/80 backdrop-blur-md border border-sky-500/30">
-                    <div class="flex items-center justify-between">
-                      <div>
-                        <div class="text-xs font-bold text-white">Sameul Hasan</div>
-                        <div class="text-[10px] text-sky-300 font-mono">Daffodil Int'l Univ.</div>
-                      </div>
-                      <div class="px-2 py-1 rounded bg-sky-500/20 border border-sky-500/40 text-[10px] font-mono font-bold text-sky-300 flex items-center gap-1">
-                        <i data-lucide="trophy" class="w-3 h-3 text-amber-400"></i>
-                        Space Apps 2024
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Floating Tech Pill 1 -->
-              <div class="absolute -top-4 -left-4 px-3 py-1.5 rounded-lg glass-card border border-sky-500/30 shadow-lg text-xs font-mono text-sky-300 flex items-center gap-1.5 animate-float">
-                <i data-lucide="terminal" class="w-3.5 h-3.5 text-sky-400"></i>
-                <span>AI & Web Developer</span>
-              </div>
-
-              <!-- Floating Tech Pill 2 -->
-              <div class="absolute -bottom-4 -right-4 px-3 py-1.5 rounded-lg glass-card border border-blue-500/30 shadow-lg text-xs font-mono text-blue-300 flex items-center gap-1.5 animate-float-delayed">
-                <i data-lucide="bot" class="w-3.5 h-3.5 text-blue-400"></i>
-                <span>DIURC President</span>
-              </div>
-            </div>
-
-            <!-- Cyber Terminal Card -->
-            <div class="w-full max-w-sm glass-card rounded-2xl p-4 border border-slate-800 space-y-2 font-mono text-xs shadow-xl">
-              <div class="flex items-center justify-between border-b border-slate-800/80 pb-2">
-                <div class="flex items-center gap-1.5">
-                  <div class="w-2.5 h-2.5 rounded-full bg-rose-500/80"></div>
-                  <div class="w-2.5 h-2.5 rounded-full bg-amber-500/80"></div>
-                  <div class="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></div>
-                </div>
-                <span class="text-[10px] text-slate-500">sameul@dev:~$</span>
-              </div>
-              <div class="space-y-1 text-[11px] text-slate-300 pt-1">
-                <div><span class="text-sky-400">$</span> fetch profile --focus</div>
-                <div class="text-emerald-400">&gt; Full-stack web + practical AI projects</div>
-                <div><span class="text-sky-400">$</span> check status</div>
-                <div class="text-blue-300">&gt; Open to internships and collaborative builds</div>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ABOUT SECTION -->
-    <section id="about" class="py-20 relative">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-300 font-mono text-xs uppercase tracking-wider">
-            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-sky-400"></i>
-            About Me
-          </div>
-          <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white tracking-tight">
-            Builder mindset, <span class="text-gradient">student pace.</span>
-          </h2>
-          <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-            I like building projects that are useful first: tools I can test with real users, improve quickly, and learn from in public.
+    <section id="home" class="relative pt-32 pb-20">
+      <div class="mx-auto grid max-w-6xl gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:px-8">
+        <div class="space-y-6 lg:col-span-7" data-hero-intro>
+          <p class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-3 py-1 text-xs font-medium text-slate-700 backdrop-blur">
+            <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
+            Open to internships and collaboration
           </p>
-        </div>
-
-        <!-- 5 Brand Pillars Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-14">
-          <div class="glass-card glass-card-hover p-5 rounded-2xl flex flex-col justify-between space-y-4 relative overflow-hidden group">
-            <div class="w-10 h-10 rounded-xl bg-sky-500/20 border border-sky-500/30 flex items-center justify-center text-sky-300">
-              <i data-lucide="code-2" class="w-5 h-5 text-sky-400"></i>
-            </div>
-            <div class="space-y-1.5">
-              <h3 class="font-display font-bold text-base text-white group-hover:text-sky-300 transition-colors">Build</h3>
-              <p class="text-xs text-slate-300 leading-relaxed">I build end-to-end projects and turn ideas into working tools with clear user value.</p>
-            </div>
-          </div>
-
-          <div class="glass-card glass-card-hover p-5 rounded-2xl flex flex-col justify-between space-y-4 relative overflow-hidden group">
-            <div class="w-10 h-10 rounded-xl bg-blue-500/20 border border-blue-500/30 flex items-center justify-center text-blue-300">
-              <i data-lucide="users" class="w-5 h-5 text-blue-400"></i>
-            </div>
-            <div class="space-y-1.5">
-              <h3 class="font-display font-bold text-base text-white group-hover:text-blue-300 transition-colors">Lead</h3>
-              <p class="text-xs text-slate-300 leading-relaxed">I lead student teams, organize events, and help peers move from ideas to demos.</p>
-            </div>
-          </div>
-
-          <div class="glass-card glass-card-hover p-5 rounded-2xl flex flex-col justify-between space-y-4 relative overflow-hidden group">
-            <div class="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-500/30 flex items-center justify-center text-amber-300">
-              <i data-lucide="sparkles" class="w-5 h-5 text-amber-400"></i>
-            </div>
-            <div class="space-y-1.5">
-              <h3 class="font-display font-bold text-base text-white group-hover:text-amber-300 transition-colors">Learn</h3>
-              <p class="text-xs text-slate-300 leading-relaxed">I learn by building: shipping small iterations, collecting feedback, and improving the next version.</p>
-            </div>
-          </div>
-
-          <div class="glass-card glass-card-hover p-5 rounded-2xl flex flex-col justify-between space-y-4 relative overflow-hidden group">
-            <div class="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-300">
-              <i data-lucide="target" class="w-5 h-5 text-emerald-400"></i>
-            </div>
-            <div class="space-y-1.5">
-              <h3 class="font-display font-bold text-base text-white group-hover:text-emerald-300 transition-colors">Impact</h3>
-              <p class="text-xs text-slate-300 leading-relaxed">I focus on practical outcomes in education, events, and developer productivity workflows.</p>
-            </div>
-          </div>
-
-          <div class="glass-card glass-card-hover p-5 rounded-2xl flex flex-col justify-between space-y-4 relative overflow-hidden group">
-            <div class="w-10 h-10 rounded-xl bg-rose-500/20 border border-rose-500/30 flex items-center justify-center text-rose-300">
-              <i data-lucide="heart-handshake" class="w-5 h-5 text-rose-400"></i>
-            </div>
-            <div class="space-y-1.5">
-              <h3 class="font-display font-bold text-base text-white group-hover:text-rose-300 transition-colors">Grow Together</h3>
-              <p class="text-xs text-slate-300 leading-relaxed">I enjoy mentoring, sharing resources, and helping other students get started in tech.</p>
-            </div>
+          <h1 class="font-display text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl lg:text-6xl">
+            Building practical web and AI tools.
+          </h1>
+          <p class="max-w-2xl text-base leading-relaxed text-slate-700 sm:text-lg">
+            I’m Sameul Hasan, a Software Engineering student at Daffodil International University focused on useful products, clean implementation, and iterative learning.
+          </p>
+          <p class="font-mono text-sm text-slate-600">
+            <span class="text-slate-800">&gt;</span> <span id="typewriter-text"></span><span aria-hidden="true">|</span>
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <a href="#projects" class="rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">View Projects</a>
+            <a href="mailto:sameulhasanbd@gmail.com?subject=Portfolio%20Collaboration%20Inquiry" class="rounded-xl border border-slate-300 bg-white/80 px-5 py-3 text-sm font-semibold text-slate-900 transition hover:border-slate-400">Email Me</a>
           </div>
         </div>
 
-        <!-- Academic Foundation Card -->
-        <div class="glass-card p-6 sm:p-8 rounded-3xl border border-slate-800 relative overflow-hidden max-w-4xl mx-auto">
-          <div class="flex items-center gap-3 mb-6">
-            <div class="p-3 rounded-xl bg-blue-500/20 border border-blue-500/30 text-blue-400">
-              <i data-lucide="graduation-cap" class="w-6 h-6"></i>
+        <div class="lg:col-span-5" data-hero-intro>
+          <div class="glass-card interactive-card rounded-3xl p-6 sm:p-8">
+            <div class="mb-6 flex items-center justify-between">
+              <span class="font-mono text-xs uppercase tracking-wide text-slate-500">Developer Snapshot</span>
+              <span class="rounded-full bg-slate-900 px-3 py-1 text-xs font-semibold text-white">SH</span>
             </div>
-            <div>
-              <h3 class="font-display font-bold text-xl text-white">Learning Journey</h3>
-              <p class="text-xs font-mono text-blue-300">Software Engineering Program</p>
-            </div>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
-            <div class="md:col-span-6 space-y-3 p-4 rounded-2xl bg-slate-900/80 border border-slate-800">
-              <div class="flex items-center justify-between gap-2">
-                <span class="font-bold text-white text-base">B.Sc. in Software Engineering</span>
-                <span class="px-2.5 py-0.5 rounded-full bg-sky-500/15 border border-sky-500/30 text-sky-300 font-mono text-xs font-bold">
-                  CGPA 3.66 / 4.00
-                </span>
+            <dl class="space-y-4 text-sm text-slate-700">
+              <div class="flex items-center justify-between gap-4">
+                <dt class="font-medium">Focus</dt>
+                <dd class="text-right">Web + AI-assisted tools</dd>
               </div>
-              <div class="text-xs text-slate-400">
-                Daffodil International University — Dhaka, Bangladesh
+              <div class="flex items-center justify-between gap-4">
+                <dt class="font-medium">Current Role</dt>
+                <dd class="text-right">President, DIU Robotics Club</dd>
               </div>
-              <div class="flex flex-wrap gap-2 text-[11px] font-mono text-slate-400 pt-1">
-                <span class="px-2 py-1 rounded bg-slate-800 text-slate-300">4th-Year Undergraduate </span>
-                <span class="px-2 py-1 rounded bg-slate-800 text-sky-300">Expected Grad: June 2027</span>
+              <div class="flex items-center justify-between gap-4">
+                <dt class="font-medium">Academic Standing</dt>
+                <dd class="text-right">CGPA 3.66 / 4.00</dd>
               </div>
-            </div>
-
-            <div class="md:col-span-6 space-y-3">
-              <div class="flex items-center gap-1.5 text-xs font-mono text-sky-400 uppercase tracking-wide">
-                <i data-lucide="book-open" class="w-4 h-4"></i>
-                <span>Core Competencies & Coursework</span>
-              </div>
-              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                My coursework covers Data Structures & Algorithms, OOP in Java/Python, web systems, databases, and applied AI. I usually reinforce each topic with small side projects.
-              </p>
-            </div>
+            </dl>
           </div>
         </div>
-
       </div>
     </section>
 
-    <!-- FEATURED PROJECTS SECTION -->
-    <section id="projects" class="py-20 relative">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-          <div class="space-y-3 max-w-2xl">
-            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-300 font-mono text-xs uppercase tracking-wider">
-              <i data-lucide="layers" class="w-3.5 h-3.5 text-sky-400"></i>
-              Selected Work
-            </div>
-            <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white tracking-tight">
-              Featured <span class="text-gradient">Projects</span>
-            </h2>
-            <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-              A few projects I’ve built across AI experiments, web apps, and student operations tooling.
-            </p>
+    <section id="about" class="pb-20" data-reveal>
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div class="glass-card rounded-3xl p-6 sm:p-8 lg:p-10">
+          <h2 class="font-display text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">About</h2>
+          <p class="mt-4 max-w-3xl text-base leading-relaxed text-slate-700">
+            I build end-to-end projects that solve practical student and community problems. My work spans full-stack development, local and cloud AI experimentation, and delivery-focused collaboration in student-led teams.
+          </p>
+          <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3" data-stagger>
+            <article class="interactive-card rounded-2xl border border-white/70 bg-white/70 p-4" data-reveal-item>
+              <h3 class="font-semibold text-slate-900">Build</h3>
+              <p class="mt-1 text-sm text-slate-600">I translate ideas into usable prototypes and iterate from feedback.</p>
+            </article>
+            <article class="interactive-card rounded-2xl border border-white/70 bg-white/70 p-4" data-reveal-item>
+              <h3 class="font-semibold text-slate-900">Lead</h3>
+              <p class="mt-1 text-sm text-slate-600">I organize technical teams and event operations for measurable outcomes.</p>
+            </article>
+            <article class="interactive-card rounded-2xl border border-white/70 bg-white/70 p-4" data-reveal-item>
+              <h3 class="font-semibold text-slate-900">Learn</h3>
+              <p class="mt-1 text-sm text-slate-600">I improve through small experiments, documentation, and consistent shipping.</p>
+            </article>
           </div>
+        </div>
+      </div>
+    </section>
 
-          <!-- Category Filter Tabs -->
-          <div class="flex items-center gap-2 overflow-x-auto pb-2 sm:pb-0 no-scrollbar">
-            <button class="project-tab px-4 py-2 rounded-xl text-xs font-mono font-semibold transition-all bg-gradient-to-r from-sky-500 to-blue-600 text-white shadow-md" data-category="All">
-              All
-            </button>
-            <button class="project-tab px-4 py-2 rounded-xl text-xs font-mono font-semibold transition-all bg-slate-900/80 text-slate-400 hover:text-white" data-category="AI & SLMs">
-              AI & SLMs
-            </button>
-            <button class="project-tab px-4 py-2 rounded-xl text-xs font-mono font-semibold transition-all bg-slate-900/80 text-slate-400 hover:text-white" data-category="AI & HealthTech">
-              AI & HealthTech
-            </button>
-            <button class="project-tab px-4 py-2 rounded-xl text-xs font-mono font-semibold transition-all bg-slate-900/80 text-slate-400 hover:text-white" data-category="AI & Agentic Systems">
-              AI & Agentic Systems
-            </button>
-            <button class="project-tab px-4 py-2 rounded-xl text-xs font-mono font-semibold transition-all bg-slate-900/80 text-slate-400 hover:text-white" data-category="Web & Full-Stack">
-              Web & Full-Stack
+    <section id="skills" class="pb-20" data-reveal>
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div class="mb-6 flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <h2 class="font-display text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Skills</h2>
+            <p class="mt-2 text-sm text-slate-600">Core capabilities used in current project work.</p>
+          </div>
+          <div class="flex flex-wrap gap-2" role="tablist" aria-label="Skill categories">
+            <button class="skill-tab rounded-lg bg-slate-900 px-3 py-2 text-xs font-semibold text-white" data-category="ai" role="tab" aria-selected="true">AI & Agentic</button>
+            <button class="skill-tab rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700" data-category="fullstack" role="tab">Full-Stack</button>
+            <button class="skill-tab rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700" data-category="languages" role="tab">Languages</button>
+            <button class="skill-tab rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700" data-category="cloud" role="tab">Cloud</button>
+          </div>
+        </div>
+        <div id="skills-display-grid" class="grid gap-4 md:grid-cols-2" data-stagger></div>
+      </div>
+    </section>
+
+    <section id="projects" class="pb-20" data-reveal>
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div class="mb-6 flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <h2 class="font-display text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Selected Projects</h2>
+            <p class="mt-2 text-sm text-slate-600">Project links currently point to my GitHub profile until individual repositories are published.</p>
+          </div>
+          <div class="flex flex-wrap gap-2" role="tablist" aria-label="Project categories">
+            <button class="project-tab rounded-lg bg-slate-900 px-3 py-2 text-xs font-semibold text-white" data-category="All">All</button>
+            <button class="project-tab rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700" data-category="AI & SLMs">AI & SLMs</button>
+            <button class="project-tab rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700" data-category="AI & HealthTech">AI & HealthTech</button>
+            <button class="project-tab rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700" data-category="AI & Agentic Systems">AI & Agentic</button>
+            <button class="project-tab rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700" data-category="Web & Full-Stack">Web & Full-Stack</button>
+          </div>
+        </div>
+        <div id="projects-grid" class="grid gap-4 md:grid-cols-2 xl:grid-cols-3" data-stagger></div>
+      </div>
+    </section>
+
+    <section id="contact" class="pb-20" data-reveal>
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div class="glass-card rounded-3xl p-6 sm:p-8 lg:p-10">
+          <h2 class="font-display text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Contact</h2>
+          <p class="mt-3 max-w-2xl text-base text-slate-700">If you want to discuss internships, projects, or collaboration, I’d love to connect.</p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="mailto:sameulhasanbd@gmail.com?subject=Collaboration%20Inquiry%20-%20Sameul%20Hasan" class="rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">Send Email</a>
+            <button id="copy-email-btn" class="rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 transition hover:border-slate-400">
+              <span id="copy-feedback-text">Copy Email</span>
             </button>
           </div>
+          <ul class="mt-6 space-y-2 text-sm text-slate-700">
+            <li><a href="https://github.com/sameul-hasan" target="_blank" rel="noreferrer" class="underline-offset-4 hover:underline">GitHub: github.com/sameul-hasan</a></li>
+            <li><a href="https://www.linkedin.com/in/sameulhasan/" target="_blank" rel="noreferrer" class="underline-offset-4 hover:underline">LinkedIn: linkedin.com/in/sameulhasan</a></li>
+            <li><a href="https://wa.me/8801707654740" target="_blank" rel="noreferrer" class="underline-offset-4 hover:underline">WhatsApp: +8801707654740</a></li>
+            <li><span>Location: Dhaka, Bangladesh</span></li>
+          </ul>
         </div>
-
-        <p class="text-xs text-slate-400 font-mono -mt-6 mb-8">Note: project links currently point to my GitHub profile until each repo is published individually.</p>
-        <!-- Projects Grid -->
-        <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-
-      </div>
-    </section>
-
-    <!-- N8N AUTOMATION BOTS SECTION -->
-    <section id="workflows" class="py-20 relative bg-slate-950/40">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-          <div class="space-y-3 max-w-2xl">
-            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-300 font-mono text-xs uppercase tracking-wider">
-              <i data-lucide="bot" class="w-3.5 h-3.5 text-blue-400"></i>
-              Workflow Experiments
-            </div>
-            <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white tracking-tight">
-              n8n Automation <span class="text-gradient">Bots</span>
-            </h2>
-            <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-              A set of reusable n8n workflows I built to automate daily research, messaging, and content tasks.
-            </p>
-          </div>
-
-          <div class="flex items-center gap-2">
-            <span class="text-xs font-mono text-sky-300 bg-sky-500/10 px-3 py-1.5 rounded-xl border border-sky-500/20">
-              ⚡ 4 Production JSON Blueprints Ready
-            </span>
-          </div>
-        </div>
-
-        <!-- Bot Cards Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          
-          <!-- Bot 1 -->
-          <div class="glass-card p-6 sm:p-8 rounded-3xl border border-slate-800 hover:border-sky-500/40 transition-all flex flex-col justify-between space-y-6 group">
-            <div class="space-y-4">
-              <div class="flex items-center justify-between gap-2">
-                <span class="px-2.5 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-300 font-mono text-xs">
-                  News & Intelligence
-                </span>
-                <span class="text-xs font-mono text-slate-400">11 Nodes</span>
-              </div>
-              <h3 class="font-display font-bold text-xl text-white group-hover:text-sky-300 transition-colors">
-                News Fetching & AI Digest Bot
-              </h3>
-              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                Pulls top Hacker News posts, summarizes them with AI, and sends a short digest on a schedule.
-              </p>
-              <div class="flex flex-wrap gap-1.5 pt-1">
-                <span class="px-2 py-0.5 rounded-md bg-slate-900 border border-slate-800 text-[11px] font-mono text-slate-300">Hacker News API</span>
-                <span class="px-2 py-0.5 rounded-md bg-slate-900 border border-slate-800 text-[11px] font-mono text-slate-300">Groq AI</span>
-                <span class="px-2 py-0.5 rounded-md bg-slate-900 border border-slate-800 text-[11px] font-mono text-slate-300">Scheduled Trigger</span>
-              </div>
-            </div>
-
-            <div class="pt-6 border-t border-slate-800/80 flex items-center justify-between">
-              <span class="text-[11px] font-mono text-slate-400">File: <span class="text-slate-300">news-fetching-bot.json</span></span>
-              <a href="workflows/news-fetching-bot.json" download="news-fetching-bot.json" class="px-4 py-2 rounded-xl bg-slate-900 hover:bg-blue-600 text-white text-xs font-semibold border border-blue-500/30 hover:border-blue-500 flex items-center gap-2 transition-all shadow-sm">
-                <i data-lucide="arrow-down-to-line" class="w-3.5 h-3.5 text-sky-400"></i>
-                <span>Download JSON</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- Bot 2 -->
-          <div class="glass-card p-6 sm:p-8 rounded-3xl border border-slate-800 hover:border-blue-500/40 transition-all flex flex-col justify-between space-y-6 group">
-            <div class="space-y-4">
-              <div class="flex items-center justify-between gap-2">
-                <span class="px-2.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-300 font-mono text-xs">
-                  Developer Productivity
-                </span>
-                <span class="text-xs font-mono text-slate-400">7 Nodes</span>
-              </div>
-              <h3 class="font-display font-bold text-xl text-white group-hover:text-blue-300 transition-colors">
-                Everyday Random Code Idea Bot
-              </h3>
-              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                Generates a daily coding prompt and sends it to Telegram to keep practice consistent.
-              </p>
-              <div class="flex flex-wrap gap-1.5 pt-1">
-                <span class="px-2 py-0.5 rounded-md bg-slate-900 border border-slate-800 text-[11px] font-mono text-slate-300">Telegram Bot API</span>
-                <span class="px-2 py-0.5 rounded-md bg-slate-900 border border-slate-800 text-[11px] font-mono text-slate-300">Groq Cloud</span>
-                <span class="px-2 py-0.5 rounded-md bg-slate-900 border border-slate-800 text-[11px] font-mono text-slate-300">Cron Trigger</span>
-              </div>
-            </div>
-
-            <div class="pt-6 border-t border-slate-800/80 flex items-center justify-between">
-              <span class="text-[11px] font-mono text-slate-400">File: <span class="text-slate-300">everyday-code-idea.json</span></span>
-              <a href="workflows/everyday-code-idea.json" download="everyday-code-idea.json" class="px-4 py-2 rounded-xl bg-slate-900 hover:bg-blue-600 text-white text-xs font-semibold border border-blue-500/30 hover:border-blue-500 flex items-center gap-2 transition-all shadow-sm">
-                <i data-lucide="arrow-down-to-line" class="w-3.5 h-3.5 text-blue-400"></i>
-                <span>Download JSON</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- Bot 3 -->
-          <div class="glass-card p-6 sm:p-8 rounded-3xl border border-slate-800 hover:border-sky-500/40 transition-all flex flex-col justify-between space-y-6 group">
-            <div class="space-y-4">
-              <div class="flex items-center justify-between gap-2">
-                <span class="px-2.5 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-300 font-mono text-xs">
-                  Autonomous Research
-                </span>
-                <span class="text-xs font-mono text-slate-400">9 Nodes</span>
-              </div>
-              <h3 class="font-display font-bold text-xl text-white group-hover:text-sky-300 transition-colors">
-                AI Multi-Agent Research Assistant
-              </h3>
-              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                Runs a structured research flow that gathers sources, drafts notes, and outputs organized summaries.
-              </p>
-              <div class="flex flex-wrap gap-1.5 pt-1">
-                <span class="px-2 py-0.5 rounded-md bg-slate-900 border border-slate-800 text-[11px] font-mono text-slate-300">LangChain Agents</span>
-                <span class="px-2 py-0.5 rounded-md bg-slate-900 border border-slate-800 text-[11px] font-mono text-slate-300">Web Scraping</span>
-                <span class="px-2 py-0.5 rounded-md bg-slate-900 border border-slate-800 text-[11px] font-mono text-slate-300">Groq Reasoning</span>
-              </div>
-            </div>
-
-            <div class="pt-6 border-t border-slate-800/80 flex items-center justify-between">
-              <span class="text-[11px] font-mono text-slate-400">File: <span class="text-slate-300">research-bot.json</span></span>
-              <a href="workflows/research-bot.json" download="research-bot.json" class="px-4 py-2 rounded-xl bg-slate-900 hover:bg-blue-600 text-white text-xs font-semibold border border-blue-500/30 hover:border-blue-500 flex items-center gap-2 transition-all shadow-sm">
-                <i data-lucide="arrow-down-to-line" class="w-3.5 h-3.5 text-sky-400"></i>
-                <span>Download JSON</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- Bot 4 -->
-          <div class="glass-card p-6 sm:p-8 rounded-3xl border border-slate-800 hover:border-blue-500/40 transition-all flex flex-col justify-between space-y-6 group">
-            <div class="space-y-4">
-              <div class="flex items-center justify-between gap-2">
-                <span class="px-2.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-300 font-mono text-xs">
-                  Executive Operations
-                </span>
-                <span class="text-xs font-mono text-slate-400">8 Nodes</span>
-              </div>
-              <h3 class="font-display font-bold text-xl text-white group-hover:text-blue-300 transition-colors">
-                Smart Mailing & Executive Assistant
-              </h3>
-              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                Organizes incoming Gmail threads and suggests draft replies for faster inbox handling.
-              </p>
-              <div class="flex flex-wrap gap-1.5 pt-1">
-                <span class="px-2 py-0.5 rounded-md bg-slate-900 border border-slate-800 text-[11px] font-mono text-slate-300">Gmail OAuth2</span>
-                <span class="px-2 py-0.5 rounded-md bg-slate-900 border border-slate-800 text-[11px] font-mono text-slate-300">Groq AI</span>
-                <span class="px-2 py-0.5 rounded-md bg-slate-900 border border-slate-800 text-[11px] font-mono text-slate-300">Auto Responder</span>
-              </div>
-            </div>
-
-            <div class="pt-6 border-t border-slate-800/80 flex items-center justify-between">
-              <span class="text-[11px] font-mono text-slate-400">File: <span class="text-slate-300">mailing-bot.json</span></span>
-              <a href="workflows/mailing-bot.json" download="mailing-bot.json" class="px-4 py-2 rounded-xl bg-slate-900 hover:bg-blue-600 text-white text-xs font-semibold border border-blue-500/30 hover:border-blue-500 flex items-center gap-2 transition-all shadow-sm">
-                <i data-lucide="arrow-down-to-line" class="w-3.5 h-3.5 text-blue-400"></i>
-                <span>Download JSON</span>
-              </a>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- LEADERSHIP SECTION -->
-    <section id="leadership" class="py-20 relative">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-300 font-mono text-xs uppercase tracking-wider">
-            <i data-lucide="users" class="w-3.5 h-3.5 text-sky-400"></i>
-            Leadership & Community
-          </div>
-          <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white tracking-tight">
-            Leadership & <span class="text-gradient">Impact</span>
-          </h2>
-          <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-            I’ve taken student leadership roles where I organize events, coordinate teams, and support technical activities on campus.
-          </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          
-          <!-- DIURC -->
-          <div class="glass-card p-6 sm:p-8 rounded-3xl border border-slate-800 hover:border-sky-500/40 space-y-4">
-            <div class="flex items-center justify-between">
-              <span class="px-3 py-1 rounded-full bg-sky-500/15 border border-sky-500/30 text-sky-300 font-mono text-xs font-semibold">
-                President
-              </span>
-              <span class="text-xs font-mono text-slate-400">Jan 2026 – Present</span>
-            </div>
-            <div>
-              <h3 class="font-display font-bold text-xl text-white">DIU Robotics Club (DIURC)</h3>
-              <p class="text-xs font-mono text-sky-400 mt-0.5">Daffodil International University</p>
-            </div>
-            <ul class="space-y-2 text-xs sm:text-sm text-slate-300">
-              <li class="flex items-start gap-2">
-                <span class="text-sky-400">•</span>
-                <span>Coordinate club planning, sub-teams, and day-to-day execution with other student leaders.</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-sky-400">•</span>
-                <span>Help run flagship initiatives like RoboCamp and RoboSpark with cross-team coordination.</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-sky-400">•</span>
-                <span>Worked to increase collaboration between Software Engineering and EEE student builders.</span>
-              </li>
-            </ul>
-          </div>
-
-          <!-- IEEE RAS -->
-          <div class="glass-card p-6 sm:p-8 rounded-3xl border border-slate-800 hover:border-blue-500/40 space-y-4">
-            <div class="flex items-center justify-between">
-              <span class="px-3 py-1 rounded-full bg-blue-500/15 border border-blue-500/30 text-blue-300 font-mono text-xs font-semibold">
-                Chair-Person
-              </span>
-              <span class="text-xs font-mono text-slate-400">2026 – 2027</span>
-            </div>
-            <div>
-              <h3 class="font-display font-bold text-xl text-white">IEEE Robotics &amp; Automation Society (RAS)</h3>
-              <p class="text-xs font-mono text-blue-400 mt-0.5">DIU Student Branch Chapter Ex-Com</p>
-            </div>
-            <ul class="space-y-2 text-xs sm:text-sm text-slate-300">
-              <li class="flex items-start gap-2">
-                <span class="text-blue-400">•</span>
-                <span>Elected to coordinate chapter activities, workshops, and technical sessions.</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-blue-400">•</span>
-                <span>Support undergraduate interest in robotics through regular events and learning resources.</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-blue-400">•</span>
-                <span>Coordinate student branch participation in IEEE competitions and symposiums.</span>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Data Science Club -->
-          <div class="glass-card p-6 sm:p-8 rounded-3xl border border-slate-800 hover:border-sky-500/40 space-y-4">
-            <div class="flex items-center justify-between">
-              <span class="px-3 py-1 rounded-full bg-sky-500/15 border border-sky-500/30 text-sky-300 font-mono text-xs font-semibold">
-                Industrial Secretary
-              </span>
-              <span class="text-xs font-mono text-slate-400">Nov 2025 - present</span>
-            </div>
-            <div>
-              <h3 class="font-display font-bold text-xl text-white">DIU Data Science Club</h3>
-              <p class="text-xs font-mono text-sky-400 mt-0.5">Industry Partnerships &amp; Seminars</p>
-            </div>
-            <ul class="space-y-2 text-xs sm:text-sm text-slate-300">
-              <li class="flex items-start gap-2">
-                <span class="text-sky-400">•</span>
-                <span>Fostered corporate and industrial partnerships to bridge academia with practical data science workflows.</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-sky-400">•</span>
-                <span>Organized hands-on technical sessions covering data analysis, predictive modeling, and analytics pipelines.</span>
-              </li>
-            </ul>
-          </div>
-
-          <!-- ICADHI 2026 -->
-          <div class="glass-card p-6 sm:p-8 rounded-3xl border border-slate-800 hover:border-blue-500/40 space-y-4">
-            <div class="flex items-center justify-between">
-              <span class="px-3 py-1 rounded-full bg-blue-500/15 border border-blue-500/30 text-blue-300 font-mono text-xs font-semibold">
-                Registration Chair
-              </span>
-              <span class="text-xs font-mono text-slate-400">2026</span>
-            </div>
-            <div>
-              <h3 class="font-display font-bold text-xl text-white">ICADHI 2026 Congress</h3>
-              <p class="text-xs font-mono text-blue-400 mt-0.5">International Congress on AI &amp; Digital Health</p>
-            </div>
-            <ul class="space-y-2 text-xs sm:text-sm text-slate-300">
-              <li class="flex items-start gap-2">
-                <span class="text-blue-400">•</span>
-                <span>Built entire web registration and automated QR credential verification system in 1 week.</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-blue-400">•</span>
-                <span>Managed 298 registrations, 250 on-site international participants, and 39 organizers with zero queue delays.</span>
-              </li>
-            </ul>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ACHIEVEMENTS SECTION -->
-    <section id="achievements" class="py-20 relative bg-slate-950/40">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 font-mono text-xs uppercase tracking-wider">
-            <i data-lucide="award" class="w-3.5 h-3.5 text-amber-400"></i>
-            Honors &amp; Recognition
-          </div>
-          <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white tracking-tight">
-            Competitive <span class="text-gradient-amber">Milestones</span>
-          </h2>
-          <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-            Competitions and volunteer work that helped me grow through teamwork, rapid prototyping, and practical problem-solving.
-          </p>
-        </div>
-
-        <!-- NASA Space Apps Golden Spotlight Card -->
-        <div class="glass-card p-6 sm:p-10 rounded-3xl border border-amber-500/30 bg-gradient-to-br from-slate-900/90 via-slate-900/60 to-amber-950/20 shadow-2xl relative overflow-hidden mb-10">
-          <div class="absolute top-0 right-0 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
-
-          <div class="flex flex-col lg:flex-row items-center justify-between gap-8 relative z-10">
-            <div class="space-y-4 text-center lg:text-left">
-              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-300 text-xs font-mono font-bold">
-                <i data-lucide="trophy" class="w-4 h-4 text-amber-400"></i>
-                GLOBAL NOMINEE &amp; REGIONAL CHAMPION
-              </div>
-              <h3 class="text-2xl sm:text-3xl font-display font-extrabold text-white">
-                NASA Space Apps Challenge 2024
-              </h3>
-              <p class="text-slate-300 text-xs sm:text-sm leading-relaxed max-w-2xl">
-                I worked with team <span class="text-amber-300 font-semibold">Phoenix</span> to place <span class="text-white font-semibold">1st in Barishal Division</span> and continue to the global nominee stage of NASA Space Apps.
-              </p>
-              <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2 pt-1 font-mono text-xs">
-                <span class="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">NASA Space Apps 2024</span>
-                <span class="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-amber-300">Team Phoenix</span>
-                <span class="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-emerald-400">1st Place Regional</span>
-              </div>
-            </div>
-
-            <div class="shrink-0 p-5 rounded-2xl bg-slate-950/80 border border-amber-500/30 text-center shadow-inner">
-              <i data-lucide="trophy" class="w-12 h-12 text-amber-400 mx-auto mb-2 animate-bounce"></i>
-              <div class="text-xs font-mono text-amber-300 font-bold uppercase">NASA Global</div>
-              <div class="text-sm font-display font-extrabold text-white">Nominee 2024</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Additional Honors -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-          <div class="glass-card p-6 rounded-2xl border border-slate-800 hover:border-blue-500/30 space-y-2">
-            <div class="text-xs font-mono text-blue-400 font-bold">Top 22 Finalist</div>
-            <h4 class="font-display font-bold text-base text-white">Nationwide Round Harvard HSIL Hackathon 2026</h4>
-            <p class="text-xs text-slate-300 leading-relaxed">
-              Advanced to the final 22 teams among 650+ nationwide submissions for rapid software prototype engineering.
-            </p>
-          </div>
-
-          <div class="glass-card p-6 rounded-2xl border border-slate-800 hover:border-emerald-500/30 space-y-2">
-            <div class="text-xs font-mono text-emerald-400 font-bold">Community Volunteer</div>
-            <h4 class="font-display font-bold text-base text-white">National STEM Olympiads</h4>
-            <p class="text-xs text-slate-300 leading-relaxed">
-              Actively volunteered in coordination and judging operations across national-level robotics and coding competitions.
-            </p>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- CERTIFICATIONS SECTION (Left-to-Right Slideshow) -->
-    <section id="certifications" class="py-20 relative overflow-hidden">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-          <div class="space-y-3 max-w-2xl">
-            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-300 font-mono text-xs uppercase tracking-wider">
-              <i data-lucide="shield-check" class="w-3.5 h-3.5 text-sky-400"></i>
-              Verified Credentials
-            </div>
-            <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white tracking-tight">
-              Professional <span class="text-gradient">Certifications</span>
-            </h2>
-            <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-              Formal accreditations across Cloud Security, Machine Learning, Python, SQL, Web Engineering, and UI/UX from AWS Academy, DataCamp, CodeSignal, and Udemy.
-            </p>
-          </div>
-
-          <!-- Controls & Live Gallery Link -->
-          <div class="flex flex-wrap items-center gap-3">
-            <a href="https://sameul-hasan.github.io/Cirtification-I-Have/" target="_blank" rel="noreferrer" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-semibold text-xs shadow-lg shadow-sky-500/25 hover:shadow-sky-500/40 transition-all flex items-center gap-2 group">
-              <i data-lucide="award" class="w-4 h-4 text-white"></i>
-              <span>View All Certificates</span>
-              <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
-            </a>
-
-            <a href="https://github.com/sameul-hasan/Cirtification-I-Have" target="_blank" rel="noreferrer" class="px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 hover:border-sky-500/40 text-xs font-mono text-sky-300 flex items-center gap-1.5 transition-all">
-              <i data-lucide="github" class="w-3.5 h-3.5"></i>
-              <span>GitHub</span>
-            </a>
-
-            <div class="flex items-center gap-1.5 bg-slate-900/80 p-1 rounded-xl border border-slate-800">
-              <button id="cert-prev-btn" class="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition" aria-label="Previous certificate">
-                <i data-lucide="chevron-left" class="w-4 h-4"></i>
-              </button>
-              <button id="cert-next-btn" class="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition" aria-label="Next certificate">
-                <i data-lucide="chevron-right" class="w-4 h-4"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Slideshow Carousel -->
-        <div id="cert-carousel-container" class="relative">
-          <div class="overflow-hidden rounded-3xl p-1">
-            <div id="cert-slides-track" class="flex transition-transform duration-500 ease-out"></div>
-          </div>
-
-          <!-- Dots Indicator -->
-          <div id="cert-dots-container" class="flex items-center justify-center gap-1.5 mt-8"></div>
-        </div>
-
-        <!-- Live Certificates Hub Banner -->
-        <div class="mt-10 flex justify-center">
-          <a
-            href="https://sameul-hasan.github.io/Cirtification-I-Have/"
-            target="_blank"
-            rel="noreferrer"
-            class="group p-4 sm:px-6 rounded-2xl glass-card border border-sky-500/30 hover:border-sky-500/60 shadow-xl flex flex-col sm:flex-row items-center gap-4 transition-all"
-          >
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 to-blue-600 flex items-center justify-center text-white shadow-md shadow-sky-500/20 shrink-0 group-hover:scale-105 transition-transform">
-              <i data-lucide="award" class="w-5 h-5"></i>
-            </div>
-            <div class="text-center sm:text-left">
-              <div class="text-sm font-bold text-white group-hover:text-sky-300 transition-colors">
-                Explore Full Interactive Certificate Gallery
-              </div>
-              <div class="text-xs font-mono text-slate-400">
-                Browse all 13+ original certificates, badges, and verification links on sameul-hasan.github.io/Cirtification-I-Have
-              </div>
-            </div>
-            <div class="px-3.5 py-1.5 rounded-xl bg-sky-500/10 border border-sky-500/30 text-sky-300 text-xs font-mono font-semibold flex items-center gap-1 shrink-0 group-hover:bg-sky-500/20 transition">
-              <span>Open Site</span>
-              <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-            </div>
-          </a>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- TECHNICAL CAPABILITIES MATRIX SECTION -->
-    <section id="skills" class="py-20 relative bg-slate-950/40">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
-          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-300 font-mono text-xs uppercase tracking-wider">
-            <i data-lucide="cpu" class="w-3.5 h-3.5 text-sky-400"></i>
-            Skills & Tools
-          </div>
-          <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white tracking-tight">
-            Capabilities &amp; <span class="text-gradient">Technologies</span>
-          </h2>
-          <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-            The tools I use most often while building projects and coursework deliverables.
-          </p>
-        </div>
-
-        <!-- Skill Tabs -->
-        <div class="flex items-center justify-center gap-2 mb-10 overflow-x-auto pb-2 sm:pb-0 no-scrollbar">
-          <button class="skill-tab px-4 py-2 rounded-xl text-xs font-mono font-semibold transition-all bg-gradient-to-r from-sky-500 to-blue-600 text-white" data-category="ai">
-            AI &amp; Agentic Systems
-          </button>
-          <button class="skill-tab px-4 py-2 rounded-xl text-xs font-mono font-semibold transition-all bg-slate-900/80 text-slate-400 hover:text-white" data-category="fullstack">
-            Full-Stack &amp; Web
-          </button>
-          <button class="skill-tab px-4 py-2 rounded-xl text-xs font-mono font-semibold transition-all bg-slate-900/80 text-slate-400 hover:text-white" data-category="languages">
-            Languages
-          </button>
-          <button class="skill-tab px-4 py-2 rounded-xl text-xs font-mono font-semibold transition-all bg-slate-900/80 text-slate-400 hover:text-white" data-category="cloud">
-            Databases &amp; Cloud
-          </button>
-        </div>
-
-        <!-- Skills Cards Display Grid -->
-        <div id="skills-display-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto"></div>
-
-      </div>
-    </section>
-
-    <!-- DIRECT CONTACT STATION (FORM-FREE) -->
-    <section id="contact" class="py-20 relative">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
-          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-300 font-mono text-xs uppercase tracking-wider">
-            <i data-lucide="message-square" class="w-3.5 h-3.5 text-sky-400"></i>
-            Contact
-          </div>
-          <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white tracking-tight">
-            Get in <span class="text-gradient">Touch</span>
-          </h2>
-          <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-            If you’d like to discuss an internship, project collaboration, or student tech initiative, feel free to reach out.
-          </p>
-        </div>
-
-        <!-- Direct Contact Hub -->
-        <div class="max-w-3xl mx-auto space-y-6">
-          
-          <!-- Primary Quick Connect Banner -->
-          <div class="glass-card p-6 sm:p-8 rounded-3xl border border-sky-500/30 bg-gradient-to-br from-slate-900/90 via-slate-900/70 to-sky-950/20 shadow-2xl relative overflow-hidden text-center sm:text-left">
-            <div class="absolute top-0 right-0 w-64 h-64 bg-sky-500/10 rounded-full blur-3xl pointer-events-none"></div>
-
-            <div class="flex flex-col sm:flex-row items-center justify-between gap-6 relative z-10">
-              <div class="space-y-2">
-                <span class="text-xs font-mono text-sky-300 uppercase tracking-wider block">
-                  Direct Email Address
-                </span>
-                <div class="text-xl sm:text-2xl font-mono font-bold text-white tracking-tight">
-                  sameulhasanbd@gmail.com
-                </div>
-                <p class="text-xs text-slate-400 font-mono">
-                  I usually respond within 24 hours
-                </p>
-              </div>
-
-              <!-- Action Buttons -->
-              <div class="flex flex-wrap items-center justify-center sm:justify-start gap-3 shrink-0">
-                <button id="copy-email-btn" class="px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-sky-400 border border-sky-500/30 hover:border-sky-500/60 transition flex items-center gap-2 text-xs font-mono font-semibold shadow-sm">
-                  <i data-lucide="copy" class="w-4 h-4"></i>
-                  <span id="copy-feedback-text">Copy Email</span>
-                </button>
-
-                <a href="mailto:sameulhasanbd@gmail.com?subject=Collaboration%20Inquiry%20-%20Sameul%20Hasan" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white text-xs font-bold uppercase tracking-wider shadow-lg shadow-sky-500/25 hover:shadow-sky-500/40 transition flex items-center gap-2">
-                  <i data-lucide="mail" class="w-4 h-4"></i>
-                  <span>Send Email</span>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Details Grid -->
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <!-- Phone / WhatsApp -->
-            <a href="https://wa.me/8801707654740" target="_blank" rel="noreferrer" class="glass-card glass-card-hover p-5 rounded-2xl border border-slate-800 flex items-center gap-4 group">
-              <div class="w-11 h-11 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 shrink-0 group-hover:bg-emerald-500/20 transition">
-                <i data-lucide="message-circle" class="w-5 h-5"></i>
-              </div>
-              <div class="overflow-hidden">
-                <div class="text-[11px] font-mono text-slate-400">Phone / WhatsApp</div>
-                <div class="text-xs sm:text-sm font-semibold text-white group-hover:text-emerald-300 transition truncate">
-                  +8801707654740
-                </div>
-              </div>
-            </a>
-
-            <!-- Location -->
-            <div class="glass-card p-5 rounded-2xl border border-slate-800 flex items-center gap-4">
-              <div class="w-11 h-11 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 shrink-0">
-                <i data-lucide="map-pin" class="w-5 h-5"></i>
-              </div>
-              <div class="overflow-hidden">
-                <div class="text-[11px] font-mono text-slate-400">Location</div>
-                <div class="text-xs sm:text-sm font-semibold text-white truncate">
-                  Dhaka , Bangladesh
-                </div>
-              </div>
-            </div>
-
-            <!-- LinkedIn Direct -->
-            <a href="https://www.linkedin.com/in/sameulhasan/" target="_blank" rel="noreferrer" class="glass-card glass-card-hover p-5 rounded-2xl border border-slate-800 flex items-center gap-4 group">
-              <div class="w-11 h-11 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 shrink-0 group-hover:bg-blue-500/20 transition">
-                <i data-lucide="linkedin" class="w-5 h-5"></i>
-              </div>
-              <div class="overflow-hidden">
-                <div class="text-[11px] font-mono text-slate-400">LinkedIn</div>
-                <div class="text-xs sm:text-sm font-semibold text-white group-hover:text-blue-300 transition flex items-center gap-1">
-                  <span>in/sameulhasan</span>
-                  <i data-lucide="external-link" class="w-3 h-3 text-slate-500 group-hover:text-blue-300 transition"></i>
-                </div>
-              </div>
-            </a>
-          </div>
-
-          <!-- Social Links Banner -->
-          <div class="glass-card p-4 rounded-2xl border border-slate-800/80 flex flex-col sm:flex-row sm:items-center sm:justify-around gap-3 text-xs font-mono">
-            <a href="https://github.com/sameul-hasan" target="_blank" rel="noreferrer" class="flex items-center gap-2 text-slate-400 hover:text-white transition break-all">
-              <i data-lucide="github" class="w-4 h-4 text-sky-400"></i>
-              <span>github.com/sameul-hasan</span>
-            </a>
-            <div class="hidden sm:block w-px h-6 bg-slate-800"></div>
-            <a href="https://www.linkedin.com/in/sameulhasan/" target="_blank" rel="noreferrer" class="flex items-center gap-2 text-slate-400 hover:text-sky-400 transition break-all">
-              <i data-lucide="linkedin" class="w-4 h-4 text-blue-400"></i>
-              <span>linkedin.com/in/sameulhasan</span>
-            </a>
-          </div>
-
-        </div>
-
       </div>
     </section>
   </main>
 
-  <!-- ORGANIZED 4-COLUMN FOOTER -->
-  <footer class="pt-16 pb-12 border-t border-slate-900 bg-[#01081a] relative overflow-hidden">
-    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-32 bg-sky-500/5 rounded-full blur-3xl pointer-events-none"></div>
-
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-slate-900">
-        
-        <!-- Brand Column -->
-        <div class="lg:col-span-5 space-y-4">
-          <div class="flex items-center gap-2.5">
-            <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-sky-500 to-blue-600 flex items-center justify-center text-white shadow-md shadow-sky-500/20">
-              <i data-lucide="terminal" class="w-5 h-5"></i>
-            </div>
-            <div>
-              <span class="font-display font-bold text-xl text-white tracking-tight block">Sameul Hasan</span>
-              <span class="text-[11px] font-mono text-sky-400">Software Engineering Student &amp; Developer</span>
-            </div>
-          </div>
-
-          <p class="text-xs sm:text-sm text-slate-400 leading-relaxed max-w-sm">
-            Software Engineering undergraduate at Daffodil International University building practical web and AI-assisted tools while learning in public.
-          </p>
-
-          <div class="pt-1">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900/90 border border-sky-500/20 text-[11px] font-mono text-sky-300">
-              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span>"Build useful tools. Learn continuously. Help the community."</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Navigation Column -->
-        <div class="lg:col-span-2 space-y-3">
-          <h4 class="text-xs font-mono uppercase tracking-widest text-slate-300 font-bold">Navigation</h4>
-          <ul class="space-y-2 text-xs font-medium text-slate-400">
-            <li><a href="#home" class="hover:text-sky-300 transition-colors">Home</a></li>
-            <li><a href="#about" class="hover:text-sky-300 transition-colors">About &amp; Philosophy</a></li>
-            <li><a href="#projects" class="hover:text-sky-300 transition-colors">Featured Projects</a></li>
-            <li><a href="#workflows" class="hover:text-sky-300 transition-colors">n8n Automation Bots</a></li>
-          </ul>
-        </div>
-
-        <!-- Highlights Column -->
-        <div class="lg:col-span-2 space-y-3">
-          <h4 class="text-xs font-mono uppercase tracking-widest text-slate-300 font-bold">Highlights</h4>
-          <ul class="space-y-2 text-xs font-medium text-slate-400">
-            <li><a href="#leadership" class="hover:text-sky-300 transition-colors">DIU Robotics Club</a></li>
-            <li><a href="#leadership" class="hover:text-sky-300 transition-colors">IEEE RAS Chapter</a></li>
-            <li><a href="#achievements" class="hover:text-amber-300 transition-colors">NASA Space Apps</a></li>
-            <li><a href="#certifications" class="hover:text-sky-300 transition-colors">Certifications</a></li>
-            <li><a href="#skills" class="hover:text-sky-300 transition-colors">Skills &amp; Capabilities</a></li>
-          </ul>
-        </div>
-
-        <!-- Direct Contact Column -->
-        <div class="lg:col-span-3 space-y-3">
-          <h4 class="text-xs font-mono uppercase tracking-widest text-slate-300 font-bold">Direct Contact</h4>
-          <div class="space-y-2.5 text-xs text-slate-400">
-            <div>
-              <a href="mailto:sameulhasanbd@gmail.com" class="text-white hover:text-sky-300 transition-colors font-mono flex items-center gap-1.5">
-                <i data-lucide="mail" class="w-3.5 h-3.5 text-sky-400"></i>
-                <span>sameulhasanbd@gmail.com</span>
-              </a>
-            </div>
-            <div class="flex items-center gap-1.5 font-mono text-slate-300">
-              <i data-lucide="phone" class="w-3.5 h-3.5 text-emerald-400"></i>
-              <span>+8801707654740</span>
-            </div>
-            <div class="flex items-center gap-1.5 text-slate-400">
-              <i data-lucide="map-pin" class="w-3.5 h-3.5 text-slate-400"></i>
-              <span>Dhaka / Barisal, Bangladesh</span>
-            </div>
-          </div>
-
-          <div class="pt-2 flex items-center gap-2">
-            <a href="https://github.com/sameul-hasan" target="_blank" rel="noreferrer" class="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white transition-all" aria-label="GitHub">
-              <i data-lucide="github" class="w-4 h-4"></i>
-            </a>
-            <a href="https://www.linkedin.com/in/sameulhasan/" target="_blank" rel="noreferrer" class="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-sky-400 transition-all" aria-label="LinkedIn">
-              <i data-lucide="linkedin" class="w-4 h-4"></i>
-            </a>
-            <a href="mailto:sameulhasanbd@gmail.com" class="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-emerald-400 transition-all" aria-label="Email">
-              <i data-lucide="mail" class="w-4 h-4"></i>
-            </a>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Bottom Bar -->
-      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-400">
-        <div>&copy; 2026 Md Sameul Hasan. All rights reserved.</div>
-        <button id="back-to-top-btn" class="flex items-center gap-1.5 text-slate-400 hover:text-sky-300 transition-colors group">
-          <span>Back to top</span>
-          <i data-lucide="arrow-up" class="w-3.5 h-3.5 group-hover:-translate-y-0.5 transition-transform"></i>
-        </button>
-      </div>
+  <footer class="border-t border-white/70 py-8">
+    <div class="mx-auto flex max-w-6xl flex-col items-start justify-between gap-3 px-4 text-sm text-slate-600 sm:flex-row sm:items-center sm:px-6 lg:px-8">
+      <p>&copy; 2026 Md Sameul Hasan</p>
+      <button id="back-to-top-btn" class="inline-flex items-center gap-1 rounded-md px-2 py-1 text-slate-700 transition hover:bg-slate-100 hover:text-slate-900">
+        <span>Back to top</span>
+        <i data-lucide="arrow-up" class="h-4 w-4"></i>
+      </button>
     </div>
   </footer>
 
-  <!-- ARCHITECTURE & DETAILS MODAL -->
-  <div id="project-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6 bg-slate-950/80 backdrop-blur-md">
-    <div class="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto glass-card rounded-3xl p-6 sm:p-8 border border-sky-500/30 shadow-2xl bg-slate-950">
-      <button onclick="closeProjectModal()" class="absolute top-4 right-4 p-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-white border border-slate-800 transition" aria-label="Close modal">
-        <i data-lucide="x" class="w-5 h-5"></i>
+  <div id="project-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/40 p-4 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="project-modal-title">
+    <div class="glass-card relative max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-3xl p-6 sm:p-8">
+      <button onclick="closeProjectModal()" class="absolute right-4 top-4 rounded-lg border border-slate-200 bg-white/80 p-2 text-slate-700 transition hover:text-slate-900" aria-label="Close modal">
+        <i data-lucide="x" class="h-5 w-5"></i>
       </button>
       <div id="project-modal-content"></div>
     </div>
   </div>
 
-  <!-- JavaScript Logic -->
   <script src="script.js"></script>
 </body>
 </html>
