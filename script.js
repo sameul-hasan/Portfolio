@@ -5,97 +5,97 @@ const portfolioData = {
   projects: [
     {
       id: "slm-canvas",
-      title: "SLM Canvas — Offline Code Synthesis",
-      tagline: "Quantized Small Language Models for React & Tailwind CSS Synthesis",
+      title: "SLM Canvas — Offline Code Playground",
+      tagline: "Generating React and Tailwind snippets with local small language models",
       category: "AI & SLMs",
       featured: true,
       badges: ["Small Language Models", "React", "Tailwind CSS", "Monaco Editor", "Local Inference"],
-      summary: "An intelligent offline developer canvas using quantized SLMs (Qwen 2.5 Coder) to synthesize, validate, and render production-ready React and Tailwind components with AST syntax validation.",
-      architecture: "Local Model Inference → Draft-Conditioned Constrained Decoding → Abstract Syntax Tree (AST) Validation → Monaco Editor Live Canvas Rendering",
+      summary: "A personal experiment to run quantized SLMs (Qwen 2.5 Coder) locally and turn prompts into editable React + Tailwind component drafts without relying on cloud APIs.",
+      architecture: "Prompt Input → Local Quantized Model Inference → Syntax Validation → Monaco Editor + Live Preview",
       highlights: [
-        "Zero cloud cost: Runs 100% offline via local quantized Small Language Models.",
-        "Draft-Conditioned Constrained Decoding to eliminate syntax hallucinations in generated JSX.",
-        "Integrated Monaco Editor with live AST linting and responsive preview iframe.",
-        "Direct export to clean, self-contained Tailwind and React component files."
+        "Runs fully on my machine, which made it useful for low-connectivity environments and cost-free testing.",
+        "Added syntax checks before rendering so broken JSX is caught early.",
+        "Used Monaco with a live preview to quickly iterate on generated UI components.",
+        "Exports plain component files that can be reused in other projects."
       ],
       github: "https://github.com/sameul-hasan",
       demo: null,
-      metrics: "100% Offline • Sub-second generation"
+      metrics: "Offline-first prototype"
     },
     {
       id: "skinx",
-      title: "SkinX — AI Dermatology Triage Platform",
-      tagline: "Deep Learning Diagnostic Platform for South Asian Skin Tones",
+      title: "SkinX — AI Dermatology Triage Prototype",
+      tagline: "A concept focused on improving support for South Asian skin tones",
       category: "AI & HealthTech",
       featured: true,
       badges: ["PyTorch", "Computer Vision", "U-Net", "MedSAM", "EfficientNet-B5", "DAAN"],
-      summary: "An AI-powered dermatological screening platform tailored specifically to tackle classification bias on darker South Asian skin tones across 23 conditions. Conceptualized for the Harvard HSIL Hackathon & BuildFest.",
-      architecture: "Image Preprocessing (CLAHE + DullRazor) → Lesion Segmentation (MedSAM / U-Net) → Feature Classification (EfficientNet-B5) → Domain-Adversarial Adaptation (DAAN) → Telemedicine Routing",
+      summary: "A hackathon concept for dermatology pre-screening that explored how to reduce classification bias on darker South Asian skin tones across 23 conditions.",
+      architecture: "Image Cleanup → Lesion Segmentation (MedSAM / U-Net) → Classification (EfficientNet-B5) → Domain Adaptation (DAAN) → Triage Output",
       highlights: [
-        "Addresses acute diagnostic disparity and pigmentation bias in traditional dermatological datasets.",
-        "Dual segmentation & classification pipeline using MedSAM and domain-adversarial transfer learning.",
-        "Designed as a low-bandwidth Progressive Web App (PWA) and Telegram bot for rural accessibility.",
-        "Includes delta-analysis tracking to observe lesion changes over time."
+        "Started from the problem of dataset bias and tested a segmentation + classification pipeline.",
+        "Combined MedSAM and transfer-learning experiments to compare model behavior across skin tones.",
+        "Planned low-bandwidth delivery paths (PWA and Telegram) for wider accessibility.",
+        "Included a simple progress-tracking idea for monitoring lesion changes over time."
       ],
       github: "https://github.com/sameul-hasan",
       demo: null,
-      metrics: "23 Conditions • Harvard HSIL Track"
+      metrics: "Hackathon concept • 23 conditions explored"
     },
     {
       id: "shohayok",
-      title: "Shohayok (সহায়ক) — Higher-Ed AI Assistant",
-      tagline: "Document-Grounded Bilingual Academic Intelligence",
+      title: "Shohayok (সহায়ক) — University Document Assistant",
+      tagline: "A bilingual assistant grounded in uploaded academic documents",
       category: "AI & Agentic Systems",
       featured: true,
       badges: ["Gemini API", "RAG", "ElevenLabs", "Bangla NLP", "Google AI Studio"],
-      summary: "A bilingual (Bangla & English) academic assistant for university students. Enables direct upload of complex syllabi, circulars, and university policies to receive hallucination-free answers strictly grounded in document context.",
-      architecture: "Document Ingestion (PDF/OCR) → Chunking & Vector Embeddings → Gemini Multimodal API with Strict System Prompts → ElevenLabs Audio Synthesis → Interactive Web Chat UI",
+      summary: "A Bangla-English assistant for students that answers questions from uploaded course outlines, notices, and policy documents instead of relying on generic model responses.",
+      architecture: "Document Upload (PDF/OCR) → Chunking + Embeddings → Prompted Gemini Retrieval → Optional Audio Output → Chat UI",
       highlights: [
-        "Strict context isolation: Answers strictly from uploaded documents, completely preventing academic misinformation.",
-        "Native dual-language processing in conversational Bengali and English.",
-        "Audio playback powered by ElevenLabs for students on the move.",
-        "Rapid query retrieval across 100+ page institutional guidelines and grading policies."
+        "Built retrieval constraints so responses stay tied to source documents.",
+        "Supports both Bangla and English queries for day-to-day student use.",
+        "Added audio playback with ElevenLabs for quick listening.",
+        "Designed for long documents like policy handbooks and grading guidelines."
       ],
       github: "https://github.com/sameul-hasan",
       demo: null,
-      metrics: "100% Grounded • Dual Language"
+      metrics: "RAG-based student helper"
     },
     {
       id: "icadhi-dashboard",
-      title: "ICADHI 2026 Event Management Dashboard",
-      tagline: "Real-Time Event Operations, QR Check-in & Automated Analytics",
+      title: "ICADHI 2026 Event Operations Dashboard",
+      tagline: "Registration, QR check-in, and live coordination tools",
       category: "Web & Full-Stack",
       featured: true,
       badges: ["Full-Stack", "JavaScript", "Firebase Auth", "Firestore", "QR Engine", "FCM"],
-      summary: "Engineered in just 7 days as Registration Chair for the International Congress on AI & Digital Health Innovations. Handled end-to-end registrations, dynamic QR credential emails, attendance tracking, and live meal/kit logistics.",
-      architecture: "Participant Registration → Cloud Function Email Dispatch with Dynamic QR → Scanner Web App → Real-time Firestore Sync → Executive Analytics Dashboard",
+      summary: "Built while serving as Registration Chair to handle signups, QR-based check-in, and operational tracking for ICADHI 2026 in one place.",
+      architecture: "Registration Form → QR Email Dispatch → Scanner App → Firestore Sync → Operations Dashboard",
       highlights: [
-        "Built and deployed single-handedly in 1 week to power international conference operations.",
-        "Managed 298 verified registrations, 250 on-site international participants, and 39 organizers seamlessly.",
-        "Zero-queue QR check-in scanning reducing arrival bottleneck to under 3 seconds per attendee.",
-        "Live logistics dashboard monitoring meal allocation, kit distribution, and session attendance."
+        "Delivered a practical internal system within a one-week timeline before the event.",
+        "Used it to coordinate 298 registrations and on-site check-in flow.",
+        "QR scanning replaced manual verification and reduced queue pressure at entry points.",
+        "Included real-time views for meals, kits, and attendance coordination."
       ],
       github: "https://github.com/sameul-hasan",
       demo: null,
-      metrics: "298 Registrations • 1-Week Build"
+      metrics: "298 registrations tracked"
     },
     {
       id: "fiftheye-ai",
-      title: "FifthEye AI (যাচাই) — Exam Intelligence",
-      tagline: "Automated Paper Exam Capture, Grading & LMS Sync",
+      title: "FifthEye AI (যাচাই) — Exam Workflow Concept",
+      tagline: "Exploring paper-to-digital grading support for instructors",
       category: "AI & Agentic Systems",
       featured: false,
       badges: ["RAG", "Vision LLMs", "LMS APIs", "EdTech", "FastAPI"],
-      summary: "An automated grading and evaluation assistant for educational institutions, converting handwritten paper exams into structured digital grades with rubric-aligned rationale and LMS sync.",
-      architecture: "Paper Exam Scanner → Multi-Agent Vision Inspection → Answer Matching via RAG → Grade Formulation & Feedback → LMS Integration",
+      summary: "An early concept for helping instructors digitize handwritten exam scripts, generate rubric-based draft feedback, and sync results with LMS tools.",
+      architecture: "Script Capture → Vision/OCR Review → RAG-based Answer Matching → Draft Scoring + Feedback → LMS Export",
       highlights: [
-        "Automates grading workflows for instructors with comprehensive rubric alignment.",
-        "Generates student-specific constructive feedback alongside transparent scoring rationales.",
-        "Explored Bengali branding and go-to-market strategies for university deployment."
+        "Focused on reducing repetitive grading steps rather than replacing instructor judgment.",
+        "Drafts feedback notes alongside score suggestions for faster review.",
+        "Explored bilingual usability for Bangla-medium and English-medium contexts."
       ],
       github: "https://github.com/sameul-hasan",
       demo: null,
-      metrics: "Automated Grading • LMS Sync"
+      metrics: "Early-stage concept"
     }
   ],
 
@@ -221,16 +221,16 @@ const portfolioData = {
 
   skills: {
     ai: [
-      { name: "Quantized SLMs & Local Inference", level: "Production", desc: "Qwen 2.5 Coder, Llama 3, constrained decoding, AST syntax validation" },
-      { name: "Computer Vision & PyTorch", level: "Advanced", desc: "MedSAM, U-Net, EfficientNet, OpenCV, lesion segmentation" },
-      { name: "RAG & LLM Agents", level: "Production", desc: "LangChain, Gemini API, Groq AI, vector embeddings, grounded prompting" },
-      { name: "Workflow Automation (n8n)", level: "Production", desc: "Multi-agent autonomous nodes, webhook routers, Telegram & Gmail bots" }
+      { name: "Quantized SLMs & Local Inference", level: "Applied", desc: "Hands-on work with local model runs, prompt constraints, and output validation" },
+      { name: "Computer Vision & PyTorch", level: "Advanced", desc: "Model experimentation with MedSAM, U-Net, EfficientNet, and OpenCV pipelines" },
+      { name: "RAG & LLM Agents", level: "Applied", desc: "Building document-grounded assistants with embeddings, retrieval, and prompt design" },
+      { name: "Workflow Automation (n8n)", level: "Applied", desc: "Automating Telegram/Gmail workflows with webhooks, schedulers, and AI nodes" }
     ],
     fullstack: [
-      { name: "HTML5, Vanilla JS & Modern CSS", level: "Core", desc: "DOM manipulation, asynchronous pipelines, responsive glassmorphism" },
-      { name: "Tailwind CSS", level: "Production", desc: "Custom themes, responsive grids, sleek cyber dark modes" },
-      { name: "Node.js & Express", level: "Proficient", desc: "RESTful endpoints, middleware, authentication, microservices" },
-      { name: "PHP & Laravel", level: "Proficient", desc: "MVC architecture, Blade templates, relational schema migrations" }
+      { name: "HTML5, Vanilla JS & Modern CSS", level: "Core", desc: "Responsive interfaces, DOM interactions, and accessible frontend behavior" },
+      { name: "Tailwind CSS", level: "Applied", desc: "Component styling, responsive layout systems, and theme customization" },
+      { name: "Node.js & Express", level: "Proficient", desc: "REST APIs, middleware patterns, auth basics, and service integration" },
+      { name: "PHP & Laravel", level: "Proficient", desc: "MVC app development with Blade templates and relational data models" }
     ],
     languages: [
       { name: "Python", level: "Primary", desc: "PyTorch, FastAPI, NumPy, Pandas, automation scripting" },
@@ -239,22 +239,23 @@ const portfolioData = {
       { name: "Java", level: "Academic", desc: "Object-oriented software engineering principles and design patterns" }
     ],
     cloud: [
-      { name: "AWS Cloud Security", level: "Certified", desc: "AWS Academy Graduate, IAM, compliance, secure cloud infrastructure" },
-      { name: "Firebase Suite", level: "Production", desc: "Firebase Auth, Firestore real-time database, Cloud Functions, FCM" },
-      { name: "Docker & Containers", level: "Proficient", desc: "Containerized application workflows, local testing environments" },
-      { name: "Git & GitHub Actions", level: "Daily Use", desc: "Branching strategies, CI/CD automated deployment pipelines" }
+      { name: "AWS Cloud Security", level: "Certified", desc: "IAM, shared responsibility basics, and practical cloud security foundations" },
+      { name: "Firebase Suite", level: "Applied", desc: "Auth, Firestore, Cloud Functions, and push notifications for app workflows" },
+      { name: "Docker & Containers", level: "Proficient", desc: "Container-based local development and reproducible environment setup" },
+      { name: "Git & GitHub Actions", level: "Daily Use", desc: "Branch-based collaboration, pull requests, and CI workflow familiarity" }
     ]
   }
 };
 
 // 1. Typewriter Effect in Hero
 const roles = [
-  "Software Engineering Student",
-  "Full-Stack Web Developer",
-  "President @ DIU Robotics Club",
-  "NASA Space Apps Global Nominee",
-  "AI & Agentic Systems Builder"
+  "Software Engineering student at DIU",
+  "Full-stack web developer",
+  "Builder of practical AI-assisted tools",
+  "President, DIU Robotics Club",
+  "Always learning in public"
 ];
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 let roleIndex = 0;
 let charIndex = 0;
@@ -263,6 +264,10 @@ const typewriterEl = document.getElementById("typewriter-text");
 
 function typeRole() {
   if (!typewriterEl) return;
+  if (prefersReducedMotion) {
+    typewriterEl.textContent = roles[0];
+    return;
+  }
 
   const currentRole = roles[roleIndex];
   if (isDeleting) {
@@ -313,10 +318,10 @@ function initNavigation() {
         if (scrollPos >= top && scrollPos < top + height) {
           navLinks.forEach(link => {
             if (link.getAttribute("href") === `#${id}`) {
-              link.classList.add("text-cyan-400");
+              link.classList.add("text-sky-400");
               link.classList.remove("text-slate-300");
             } else {
-              link.classList.remove("text-cyan-400");
+              link.classList.remove("text-sky-400");
               link.classList.add("text-slate-300");
             }
           });
@@ -350,12 +355,12 @@ function renderProjects() {
     : portfolioData.projects.filter(p => p.category === currentProjectCategory);
 
   container.innerHTML = filtered.map(project => `
-    <div class="glass-card glass-card-hover p-6 sm:p-7 rounded-3xl flex flex-col justify-between space-y-6 relative group overflow-hidden border border-slate-800 hover:border-cyan-500/40">
-      <div class="absolute top-0 right-0 w-36 h-36 bg-cyan-500/5 rounded-full blur-2xl group-hover:bg-cyan-500/15 transition duration-500 pointer-events-none"></div>
+    <div class="glass-card glass-card-hover p-6 sm:p-7 rounded-3xl flex flex-col justify-between space-y-6 relative group overflow-hidden border border-slate-800 hover:border-sky-500/40">
+      <div class="absolute top-0 right-0 w-36 h-36 bg-sky-500/5 rounded-full blur-2xl group-hover:bg-sky-500/15 transition duration-500 pointer-events-none"></div>
 
       <div class="space-y-4">
         <div class="flex items-center justify-between gap-2">
-          <span class="px-2.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 font-mono text-xs font-medium">
+          <span class="px-2.5 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-300 font-mono text-xs font-medium">
             ${project.category}
           </span>
           <span class="text-xs font-mono text-slate-400">
@@ -364,10 +369,10 @@ function renderProjects() {
         </div>
 
         <div>
-          <h3 class="font-display font-bold text-xl text-white group-hover:text-cyan-300 transition-colors">
+          <h3 class="font-display font-bold text-xl text-white group-hover:text-sky-300 transition-colors">
             ${project.title}
           </h3>
-          <p class="text-xs font-mono text-cyan-400 mt-1">
+          <p class="text-xs font-mono text-sky-400 mt-1">
             ${project.tagline}
           </p>
         </div>
@@ -393,7 +398,7 @@ function renderProjects() {
       <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between gap-2">
         <button
           onclick="openProjectModal('${project.id}')"
-          class="inline-flex items-center gap-1.5 text-xs font-semibold text-cyan-400 hover:text-cyan-300 group/btn"
+          class="inline-flex items-center gap-1.5 text-xs font-semibold text-sky-400 hover:text-sky-300 group/btn"
         >
           <span>Architecture & Details</span>
           <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform"></i>
@@ -422,10 +427,10 @@ function initProjectFilter() {
   tabs.forEach(tab => {
     tab.addEventListener("click", () => {
       tabs.forEach(t => {
-        t.classList.remove("bg-gradient-to-r", "from-cyan-500", "to-indigo-600", "text-white", "shadow-md");
+        t.classList.remove("bg-gradient-to-r", "from-sky-500", "to-blue-600", "text-white", "shadow-md");
         t.classList.add("bg-slate-900/80", "text-slate-400");
       });
-      tab.classList.add("bg-gradient-to-r", "from-cyan-500", "to-indigo-600", "text-white", "shadow-md");
+      tab.classList.add("bg-gradient-to-r", "from-sky-500", "to-blue-600", "text-white", "shadow-md");
       tab.classList.remove("bg-slate-900/80", "text-slate-400");
 
       currentProjectCategory = tab.getAttribute("data-category");
@@ -445,7 +450,7 @@ function openProjectModal(projectId) {
   modalContent.innerHTML = `
     <div class="space-y-6">
       <div class="flex items-center justify-between gap-4">
-        <span class="px-3 py-1 rounded-full bg-cyan-500/15 border border-cyan-500/30 text-cyan-300 font-mono text-xs font-semibold">
+        <span class="px-3 py-1 rounded-full bg-sky-500/15 border border-sky-500/30 text-sky-300 font-mono text-xs font-semibold">
           ${project.category}
         </span>
         <span class="text-xs font-mono text-slate-400">
@@ -457,13 +462,13 @@ function openProjectModal(projectId) {
         <h3 class="text-2xl sm:text-3xl font-display font-extrabold text-white">
           ${project.title}
         </h3>
-        <p class="text-sm font-mono text-cyan-400 mt-1">
+        <p class="text-sm font-mono text-sky-400 mt-1">
           ${project.tagline}
         </p>
       </div>
 
       <div class="p-4 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-2">
-        <span class="text-xs font-mono text-cyan-400 uppercase tracking-wide block">
+        <span class="text-xs font-mono text-sky-400 uppercase tracking-wide block">
           End-to-End System Pipeline
         </span>
         <div class="text-xs sm:text-sm font-mono text-slate-300 bg-slate-950 p-3 rounded-xl border border-slate-800/80 overflow-x-auto">
@@ -478,7 +483,7 @@ function openProjectModal(projectId) {
         <ul class="space-y-2 text-xs sm:text-sm text-slate-300">
           ${project.highlights.map(h => `
             <li class="flex items-start gap-2">
-              <span class="text-cyan-400 mt-0.5">•</span>
+              <span class="text-sky-400 mt-0.5">•</span>
               <span>${h}</span>
             </li>
           `).join('')}
@@ -512,7 +517,7 @@ function openProjectModal(projectId) {
         ` : '<div></div>'}
         <button
           onclick="closeProjectModal()"
-          class="px-4 py-2 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-semibold hover:bg-cyan-500/20 transition"
+          class="px-4 py-2 rounded-xl bg-sky-500/10 border border-sky-500/30 text-sky-300 text-xs font-semibold hover:bg-sky-500/20 transition"
         >
           Close Preview
         </button>
@@ -547,7 +552,7 @@ function renderCertificationsSlider() {
 
   track.innerHTML = portfolioData.certificates.map((cert, index) => `
     <div class="w-full shrink-0 max-w-full md:max-w-xl lg:max-w-2xl mx-auto px-2">
-      <div class="glass-card rounded-3xl border border-cyan-500/20 overflow-hidden shadow-2xl p-6 sm:p-8 flex flex-col md:flex-row gap-6 items-center">
+      <div class="glass-card rounded-3xl border border-sky-500/20 overflow-hidden shadow-2xl p-6 sm:p-8 flex flex-col md:flex-row gap-6 items-center">
         <div class="w-full md:w-64 shrink-0 rounded-2xl overflow-hidden bg-slate-950 border border-slate-800/80 group">
           <img
             src="${cert.image}"
@@ -559,7 +564,7 @@ function renderCertificationsSlider() {
 
         <div class="flex-grow space-y-3 text-center md:text-left">
           <div class="flex flex-wrap items-center justify-center md:justify-start gap-2">
-            <span class="px-2.5 py-0.5 rounded-full bg-cyan-500/15 border border-cyan-500/30 text-cyan-300 font-mono text-xs font-semibold">
+            <span class="px-2.5 py-0.5 rounded-full bg-sky-500/15 border border-sky-500/30 text-sky-300 font-mono text-xs font-semibold">
               ${cert.category}
             </span>
             <span class="text-xs font-mono text-slate-400">
@@ -572,7 +577,7 @@ function renderCertificationsSlider() {
           </h3>
 
           <div class="text-xs font-semibold text-slate-300">
-            Issuer: <span class="text-cyan-400">${cert.issuer}</span>
+            Issuer: <span class="text-sky-400">${cert.issuer}</span>
           </div>
 
           <div class="flex flex-wrap items-center justify-center md:justify-start gap-1.5 pt-2">
@@ -588,7 +593,7 @@ function renderCertificationsSlider() {
               href="https://sameul-hasan.github.io/Cirtification-I-Have/"
               target="_blank"
               rel="noreferrer"
-              class="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-cyan-400 hover:text-cyan-300 transition"
+              class="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-sky-400 hover:text-sky-300 transition"
             >
               <span>View Credential in Live Gallery</span>
               <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
@@ -602,7 +607,7 @@ function renderCertificationsSlider() {
   dotsContainer.innerHTML = portfolioData.certificates.map((_, i) => `
     <button
       onclick="setCertSlide(${i})"
-      class="h-2 rounded-full transition-all ${i === 0 ? 'w-6 bg-cyan-400' : 'w-2 bg-slate-800 hover:bg-slate-700'}"
+      class="h-2 rounded-full transition-all ${i === 0 ? 'w-6 bg-sky-400' : 'w-2 bg-slate-800 hover:bg-slate-700'}"
       id="cert-dot-${i}"
       aria-label="Slide ${i + 1}"
     ></button>
@@ -622,7 +627,7 @@ function updateCertPosition() {
     const dot = document.getElementById(`cert-dot-${i}`);
     if (dot) {
       if (i === certCurrentIndex) {
-        dot.className = "h-2 rounded-full transition-all w-6 bg-cyan-400";
+        dot.className = "h-2 rounded-full transition-all w-6 bg-sky-400";
       } else {
         dot.className = "h-2 rounded-full transition-all w-2 bg-slate-800 hover:bg-slate-700";
       }
@@ -646,6 +651,7 @@ function setCertSlide(index) {
 }
 
 function startCertAutoSlide() {
+  if (prefersReducedMotion) return;
   if (certAutoSlideTimer) clearInterval(certAutoSlideTimer);
   certAutoSlideTimer = setInterval(() => {
     if (!isCertPaused) {
@@ -674,12 +680,12 @@ function renderSkills(category) {
 
   const items = portfolioData.skills[category] || [];
   container.innerHTML = items.map(skill => `
-    <div class="glass-card p-5 rounded-2xl border border-slate-800 hover:border-cyan-500/30 space-y-2">
+    <div class="glass-card p-5 rounded-2xl border border-slate-800 hover:border-sky-500/30 space-y-2">
       <div class="flex items-center justify-between gap-2">
         <h4 class="font-display font-bold text-base text-white">
           ${skill.name}
         </h4>
-        <span class="px-2 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 font-mono text-[11px]">
+        <span class="px-2 py-0.5 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-300 font-mono text-[11px]">
           ${skill.level}
         </span>
       </div>
@@ -695,10 +701,10 @@ function initSkillsTabs() {
   tabs.forEach(tab => {
     tab.addEventListener("click", () => {
       tabs.forEach(t => {
-        t.classList.remove("bg-gradient-to-r", "from-cyan-500", "to-indigo-600", "text-white");
+        t.classList.remove("bg-gradient-to-r", "from-sky-500", "to-blue-600", "text-white");
         t.classList.add("bg-slate-900/80", "text-slate-400");
       });
-      tab.classList.add("bg-gradient-to-r", "from-cyan-500", "to-indigo-600", "text-white");
+      tab.classList.add("bg-gradient-to-r", "from-sky-500", "to-blue-600", "text-white");
       tab.classList.remove("bg-slate-900/80", "text-slate-400");
 
       const category = tab.getAttribute("data-category");
@@ -745,7 +751,7 @@ function initBackToTop() {
   const topBtn = document.getElementById("back-to-top-btn");
   if (topBtn) {
     topBtn.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "auto" : "smooth" });
     });
   }
 }

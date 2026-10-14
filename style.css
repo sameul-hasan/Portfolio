@@ -3,13 +3,13 @@
 html {
   scroll-behavior: smooth;
   font-family: 'Inter', sans-serif;
-  background-color: #060913;
+  background-color: #020b1f;
   color: #f1f5f9;
 }
 
 body {
   overflow-x: hidden;
-  background-color: #060913;
+  background-color: #020b1f;
 }
 
 /* Glassmorphic Cyber Cards */
@@ -32,7 +32,7 @@ body {
 
 /* Gradient Text */
 .text-gradient {
-  background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+  background: linear-gradient(135deg, #38bdf8 0%, #60a5fa 50%, #2563eb 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -49,7 +49,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #060913;
+  background: #020b1f;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -59,6 +59,13 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #38bdf8;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #38bdf8;
+  outline-offset: 2px;
+  border-radius: 0.6rem;
 }
 
 /* Float Animations */
@@ -77,6 +84,20 @@ body {
 
 .animate-float-delayed {
   animation: float 4s ease-in-out 2s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* Hide scrollbar for tabs */
