@@ -252,18 +252,18 @@ const roles = [
   "Software Engineering student at DIU",
   "Full-stack web developer",
   "Builder of practical AI-assisted tools",
-  "President, DIU Robotics Club",
-  "Always learning in public"
+  "President, DIU Robotics Club"
 ];
-const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const typewriterEl = document.getElementById("typewriter-text");
 let roleIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
-const typewriterEl = document.getElementById("typewriter-text");
 
 function typeRole() {
   if (!typewriterEl) return;
+
   if (prefersReducedMotion) {
     typewriterEl.textContent = roles[0];
     return;
@@ -278,65 +278,61 @@ function typeRole() {
     charIndex++;
   }
 
-  let typeSpeed = isDeleting ? 40 : 80;
-
+  let speed = isDeleting ? 40 : 70;
   if (!isDeleting && charIndex === currentRole.length) {
-    typeSpeed = 2200; // Pause at end of text
+    speed = 1800;
     isDeleting = true;
   } else if (isDeleting && charIndex === 0) {
     isDeleting = false;
     roleIndex = (roleIndex + 1) % roles.length;
-    typeSpeed = 400;
+    speed = 350;
   }
 
-  setTimeout(typeRole, typeSpeed);
+  setTimeout(typeRole, speed);
 }
 
-// 2. Navigation & Section Spy
+// 2. Navigation
 function initNavigation() {
   const navbar = document.getElementById("navbar");
   const mobileToggle = document.getElementById("mobile-menu-toggle");
   const mobileMenu = document.getElementById("mobile-menu");
   const navLinks = document.querySelectorAll(".nav-link");
+  const sectionIds = ["about", "skills", "projects", "contact"];
 
   window.addEventListener("scroll", () => {
-    if (window.scrollY > 40) {
-      navbar.classList.add("bg-slate-950/80", "backdrop-blur-xl", "border-b", "border-slate-800/80");
+    if (!navbar) return;
+
+    if (window.scrollY > 30) {
+      navbar.classList.add("shadow-md");
     } else {
-      navbar.classList.remove("bg-slate-950/80", "backdrop-blur-xl", "border-b", "border-slate-800/80");
+      navbar.classList.remove("shadow-md");
     }
 
-    // Scroll spy
-    const sections = ["home", "about", "projects", "workflows", "leadership", "achievements", "certifications", "skills", "contact"];
-    const scrollPos = window.scrollY + 200;
+    const scrollPos = window.scrollY + 180;
+    sectionIds.forEach(id => {
+      const section = document.getElementById(id);
+      if (!section) return;
 
-    sections.forEach(id => {
-      const el = document.getElementById(id);
-      if (el) {
-        const top = el.offsetTop;
-        const height = el.offsetHeight;
-        if (scrollPos >= top && scrollPos < top + height) {
-          navLinks.forEach(link => {
-            if (link.getAttribute("href") === `#${id}`) {
-              link.classList.add("text-sky-400");
-              link.classList.remove("text-slate-300");
-            } else {
-              link.classList.remove("text-sky-400");
-              link.classList.add("text-slate-300");
-            }
-          });
+      const inView = scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.offsetHeight;
+      navLinks.forEach(link => {
+        if (link.getAttribute("href") === `#${id}`) {
+          link.classList.toggle("text-slate-950", inView);
+          link.classList.toggle("text-slate-700", !inView);
         }
-      }
+      });
     });
   });
 
   if (mobileToggle && mobileMenu) {
     mobileToggle.addEventListener("click", () => {
+      const expanded = mobileToggle.getAttribute("aria-expanded") === "true";
+      mobileToggle.setAttribute("aria-expanded", String(!expanded));
       mobileMenu.classList.toggle("hidden");
     });
 
-    mobileMenu.querySelectorAll("a").forEach(a => {
-      a.addEventListener("click", () => {
+    mobileMenu.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        mobileToggle.setAttribute("aria-expanded", "false");
         mobileMenu.classList.add("hidden");
       });
     });
@@ -346,181 +342,117 @@ function initNavigation() {
 // 3. Projects Category Filter & Rendering
 let currentProjectCategory = "All";
 
+function projectCardTemplate(project) {
+  const badges = project.badges.slice(0, 4).map(badge => `
+    <span class="rounded-md border border-slate-200 bg-white px-2 py-1 text-[11px] font-medium text-slate-600">${badge}</span>
+  `).join("");
+
+  return `
+    <article class="glass-card interactive-card rounded-2xl p-5 sm:p-6" data-reveal-item>
+      <div class="flex items-start justify-between gap-3">
+        <span class="rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[11px] font-medium text-slate-600">${project.category}</span>
+        <span class="text-[11px] font-mono text-slate-500">${project.metrics}</span>
+      </div>
+
+      <h3 class="mt-4 font-display text-xl font-bold text-slate-900">${project.title}</h3>
+      <p class="mt-1 text-xs font-mono text-slate-500">${project.tagline}</p>
+      <p class="mt-3 text-sm leading-relaxed text-slate-700">${project.summary}</p>
+
+      <div class="mt-4 flex flex-wrap gap-2">${badges}</div>
+
+      <div class="mt-5 flex items-center justify-between gap-3 border-t border-slate-200 pt-4">
+        <button onclick="openProjectModal('${project.id}')" class="text-sm font-semibold text-slate-800 hover:text-slate-950">
+          View Details
+        </button>
+        <a href="${project.github}" target="_blank" rel="noreferrer" class="rounded-lg border border-slate-300 bg-white p-2 text-slate-700 transition hover:border-slate-400 hover:text-slate-900" aria-label="View ${project.title} on GitHub">
+          <i data-lucide="github" class="h-4 w-4"></i>
+        </a>
+      </div>
+    </article>
+  `;
+}
+
 function renderProjects() {
   const container = document.getElementById("projects-grid");
   if (!container) return;
 
   const filtered = currentProjectCategory === "All"
     ? portfolioData.projects
-    : portfolioData.projects.filter(p => p.category === currentProjectCategory);
+    : portfolioData.projects.filter(project => project.category === currentProjectCategory);
 
-  container.innerHTML = filtered.map(project => `
-    <div class="glass-card glass-card-hover p-6 sm:p-7 rounded-3xl flex flex-col justify-between space-y-6 relative group overflow-hidden border border-slate-800 hover:border-sky-500/40">
-      <div class="absolute top-0 right-0 w-36 h-36 bg-sky-500/5 rounded-full blur-2xl group-hover:bg-sky-500/15 transition duration-500 pointer-events-none"></div>
-
-      <div class="space-y-4">
-        <div class="flex items-center justify-between gap-2">
-          <span class="px-2.5 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-300 font-mono text-xs font-medium">
-            ${project.category}
-          </span>
-          <span class="text-xs font-mono text-slate-400">
-            ${project.metrics}
-          </span>
-        </div>
-
-        <div>
-          <h3 class="font-display font-bold text-xl text-white group-hover:text-sky-300 transition-colors">
-            ${project.title}
-          </h3>
-          <p class="text-xs font-mono text-sky-400 mt-1">
-            ${project.tagline}
-          </p>
-        </div>
-
-        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed line-clamp-3">
-          ${project.summary}
-        </p>
-
-        <div class="flex flex-wrap gap-1.5 pt-1">
-          ${project.badges.slice(0, 4).map(badge => `
-            <span class="px-2 py-0.5 rounded-md bg-slate-900 border border-slate-800 text-[11px] font-mono text-slate-300">
-              ${badge}
-            </span>
-          `).join('')}
-          ${project.badges.length > 4 ? `
-            <span class="px-2 py-0.5 rounded-md bg-slate-900/60 border border-slate-800 text-[11px] font-mono text-slate-500">
-              +${project.badges.length - 4}
-            </span>
-          ` : ''}
-        </div>
-      </div>
-
-      <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between gap-2">
-        <button
-          onclick="openProjectModal('${project.id}')"
-          class="inline-flex items-center gap-1.5 text-xs font-semibold text-sky-400 hover:text-sky-300 group/btn"
-        >
-          <span>Architecture & Details</span>
-          <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform"></i>
-        </button>
-
-        ${project.github ? `
-          <a
-            href="${project.github}"
-            target="_blank"
-            rel="noreferrer"
-            class="p-2 rounded-xl bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-400 hover:text-white transition"
-            aria-label="View Source on GitHub"
-          >
-            <i data-lucide="github" class="w-4 h-4"></i>
-          </a>
-        ` : ''}
-      </div>
-    </div>
-  `).join('');
-
+  container.innerHTML = filtered.map(projectCardTemplate).join("");
   lucide.createIcons();
+}
+
+function updateTabStyles(tabs, activeTab, activeClasses, inactiveClasses) {
+  tabs.forEach(tab => {
+    tab.classList.remove(...activeClasses);
+    tab.classList.remove(...inactiveClasses);
+    tab.classList.add(...inactiveClasses);
+    tab.setAttribute("aria-selected", "false");
+  });
+  activeTab.classList.remove(...inactiveClasses);
+  activeTab.classList.add(...activeClasses);
+  activeTab.setAttribute("aria-selected", "true");
 }
 
 function initProjectFilter() {
   const tabs = document.querySelectorAll(".project-tab");
+  const activeClasses = ["bg-slate-900", "text-white", "border", "border-slate-900"];
+  const inactiveClasses = ["border", "border-slate-300", "bg-white", "text-slate-700"];
+
   tabs.forEach(tab => {
     tab.addEventListener("click", () => {
-      tabs.forEach(t => {
-        t.classList.remove("bg-gradient-to-r", "from-sky-500", "to-blue-600", "text-white", "shadow-md");
-        t.classList.add("bg-slate-900/80", "text-slate-400");
-      });
-      tab.classList.add("bg-gradient-to-r", "from-sky-500", "to-blue-600", "text-white", "shadow-md");
-      tab.classList.remove("bg-slate-900/80", "text-slate-400");
-
-      currentProjectCategory = tab.getAttribute("data-category");
+      currentProjectCategory = tab.getAttribute("data-category") || "All";
+      updateTabStyles(tabs, tab, activeClasses, inactiveClasses);
       renderProjects();
+      initInteractiveCards();
     });
   });
 }
 
-// 4. Project Modal Logic
+// 4. Project Modal
 function openProjectModal(projectId) {
-  const project = portfolioData.projects.find(p => p.id === projectId);
+  const project = portfolioData.projects.find(item => item.id === projectId);
   if (!project) return;
 
   const modal = document.getElementById("project-modal");
-  const modalContent = document.getElementById("project-modal-content");
+  const content = document.getElementById("project-modal-content");
+  if (!modal || !content) return;
 
-  modalContent.innerHTML = `
-    <div class="space-y-6">
-      <div class="flex items-center justify-between gap-4">
-        <span class="px-3 py-1 rounded-full bg-sky-500/15 border border-sky-500/30 text-sky-300 font-mono text-xs font-semibold">
-          ${project.category}
-        </span>
-        <span class="text-xs font-mono text-slate-400">
-          ${project.metrics}
-        </span>
+  content.innerHTML = `
+    <div class="space-y-5">
+      <div class="flex items-center justify-between gap-3">
+        <span class="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-600">${project.category}</span>
+        <span class="text-xs font-mono text-slate-500">${project.metrics}</span>
       </div>
 
       <div>
-        <h3 class="text-2xl sm:text-3xl font-display font-extrabold text-white">
-          ${project.title}
-        </h3>
-        <p class="text-sm font-mono text-sky-400 mt-1">
-          ${project.tagline}
-        </p>
+        <h3 id="project-modal-title" class="font-display text-2xl font-bold text-slate-900">${project.title}</h3>
+        <p class="mt-1 text-sm text-slate-600">${project.tagline}</p>
       </div>
 
-      <div class="p-4 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-2">
-        <span class="text-xs font-mono text-sky-400 uppercase tracking-wide block">
-          End-to-End System Pipeline
-        </span>
-        <div class="text-xs sm:text-sm font-mono text-slate-300 bg-slate-950 p-3 rounded-xl border border-slate-800/80 overflow-x-auto">
-          ${project.architecture}
-        </div>
+      <p class="text-sm leading-relaxed text-slate-700">${project.summary}</p>
+
+      <div>
+        <h4 class="text-xs font-semibold uppercase tracking-wide text-slate-500">Architecture</h4>
+        <p class="mt-2 rounded-xl border border-slate-200 bg-white p-3 text-sm text-slate-700">${project.architecture}</p>
       </div>
 
-      <div class="space-y-3">
-        <h4 class="text-xs font-mono uppercase tracking-widest text-slate-300 font-bold">
-          Key Engineering Highlights
-        </h4>
-        <ul class="space-y-2 text-xs sm:text-sm text-slate-300">
-          ${project.highlights.map(h => `
-            <li class="flex items-start gap-2">
-              <span class="text-sky-400 mt-0.5">•</span>
-              <span>${h}</span>
-            </li>
-          `).join('')}
+      <div>
+        <h4 class="text-xs font-semibold uppercase tracking-wide text-slate-500">Highlights</h4>
+        <ul class="mt-2 space-y-2 text-sm text-slate-700">
+          ${project.highlights.map(item => `<li class="flex gap-2"><span aria-hidden="true">•</span><span>${item}</span></li>`).join("")}
         </ul>
       </div>
 
-      <div class="space-y-2">
-        <span class="text-xs font-mono text-slate-400 uppercase tracking-wide block">
-          Technologies & Tools
-        </span>
-        <div class="flex flex-wrap gap-1.5">
-          ${project.badges.map(badge => `
-            <span class="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-mono text-slate-300">
-              ${badge}
-            </span>
-          `).join('')}
-        </div>
+      <div class="flex flex-wrap gap-2">
+        ${project.badges.map(badge => `<span class="rounded-md border border-slate-200 bg-white px-2 py-1 text-xs text-slate-600">${badge}</span>`).join("")}
       </div>
 
-      <div class="pt-4 border-t border-slate-800 flex items-center justify-between">
-        ${project.github ? `
-          <a
-            href="${project.github}"
-            target="_blank"
-            rel="noreferrer"
-            class="px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-white text-xs font-semibold flex items-center gap-2 transition"
-          >
-            <i data-lucide="github" class="w-4 h-4"></i>
-            <span>View GitHub Repository</span>
-          </a>
-        ` : '<div></div>'}
-        <button
-          onclick="closeProjectModal()"
-          class="px-4 py-2 rounded-xl bg-sky-500/10 border border-sky-500/30 text-sky-300 text-xs font-semibold hover:bg-sky-500/20 transition"
-        >
-          Close Preview
-        </button>
+      <div class="flex items-center justify-between gap-3 border-t border-slate-200 pt-4">
+        <a href="${project.github}" target="_blank" rel="noreferrer" class="rounded-lg bg-slate-900 px-4 py-2 text-xs font-semibold text-white hover:bg-slate-800">View GitHub</a>
+        <button onclick="closeProjectModal()" class="rounded-lg border border-slate-300 bg-white px-4 py-2 text-xs font-semibold text-slate-800 hover:border-slate-400">Close</button>
       </div>
     </div>
   `;
@@ -533,244 +465,157 @@ function openProjectModal(projectId) {
 
 function closeProjectModal() {
   const modal = document.getElementById("project-modal");
-  if (modal) {
-    modal.classList.add("hidden");
-    modal.classList.remove("flex");
-    document.body.style.overflow = "auto";
-  }
+  if (!modal) return;
+  modal.classList.add("hidden");
+  modal.classList.remove("flex");
+  document.body.style.overflow = "";
 }
 
-// 5. Certifications Left-to-Right Slideshow
-let certCurrentIndex = 0;
-let certAutoSlideTimer = null;
-let isCertPaused = false;
-
-function renderCertificationsSlider() {
-  const track = document.getElementById("cert-slides-track");
-  const dotsContainer = document.getElementById("cert-dots-container");
-  if (!track || !dotsContainer) return;
-
-  track.innerHTML = portfolioData.certificates.map((cert, index) => `
-    <div class="w-full shrink-0 max-w-full md:max-w-xl lg:max-w-2xl mx-auto px-2">
-      <div class="glass-card rounded-3xl border border-sky-500/20 overflow-hidden shadow-2xl p-6 sm:p-8 flex flex-col md:flex-row gap-6 items-center">
-        <div class="w-full md:w-64 shrink-0 rounded-2xl overflow-hidden bg-slate-950 border border-slate-800/80 group">
-          <img
-            src="${cert.image}"
-            alt="${cert.title}"
-            class="w-full h-44 object-cover object-center group-hover:scale-105 transition-transform duration-500"
-            loading="lazy"
-          />
-        </div>
-
-        <div class="flex-grow space-y-3 text-center md:text-left">
-          <div class="flex flex-wrap items-center justify-center md:justify-start gap-2">
-            <span class="px-2.5 py-0.5 rounded-full bg-sky-500/15 border border-sky-500/30 text-sky-300 font-mono text-xs font-semibold">
-              ${cert.category}
-            </span>
-            <span class="text-xs font-mono text-slate-400">
-              ${cert.year}
-            </span>
-          </div>
-
-          <h3 class="font-display font-bold text-lg sm:text-xl text-white">
-            ${cert.title}
-          </h3>
-
-          <div class="text-xs font-semibold text-slate-300">
-            Issuer: <span class="text-sky-400">${cert.issuer}</span>
-          </div>
-
-          <div class="flex flex-wrap items-center justify-center md:justify-start gap-1.5 pt-2">
-            ${cert.skills.map(s => `
-              <span class="px-2 py-0.5 rounded-md bg-slate-900 border border-slate-800 text-[11px] font-mono text-slate-300">
-                ${s}
-              </span>
-            `).join('')}
-          </div>
-
-          <div class="pt-2">
-            <a
-              href="https://sameul-hasan.github.io/Cirtification-I-Have/"
-              target="_blank"
-              rel="noreferrer"
-              class="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-sky-400 hover:text-sky-300 transition"
-            >
-              <span>View Credential in Live Gallery</span>
-              <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  `).join('');
-
-  dotsContainer.innerHTML = portfolioData.certificates.map((_, i) => `
-    <button
-      onclick="setCertSlide(${i})"
-      class="h-2 rounded-full transition-all ${i === 0 ? 'w-6 bg-sky-400' : 'w-2 bg-slate-800 hover:bg-slate-700'}"
-      id="cert-dot-${i}"
-      aria-label="Slide ${i + 1}"
-    ></button>
-  `).join('');
-
-  updateCertPosition();
-  startCertAutoSlide();
-  lucide.createIcons();
-}
-
-function updateCertPosition() {
-  const track = document.getElementById("cert-slides-track");
-  if (!track) return;
-  track.style.transform = `translateX(-${certCurrentIndex * 100}%)`;
-
-  portfolioData.certificates.forEach((_, i) => {
-    const dot = document.getElementById(`cert-dot-${i}`);
-    if (dot) {
-      if (i === certCurrentIndex) {
-        dot.className = "h-2 rounded-full transition-all w-6 bg-sky-400";
-      } else {
-        dot.className = "h-2 rounded-full transition-all w-2 bg-slate-800 hover:bg-slate-700";
-      }
-    }
-  });
-}
-
-function nextCertSlide() {
-  certCurrentIndex = (certCurrentIndex + 1) % portfolioData.certificates.length;
-  updateCertPosition();
-}
-
-function prevCertSlide() {
-  certCurrentIndex = (certCurrentIndex - 1 + portfolioData.certificates.length) % portfolioData.certificates.length;
-  updateCertPosition();
-}
-
-function setCertSlide(index) {
-  certCurrentIndex = index;
-  updateCertPosition();
-}
-
-function startCertAutoSlide() {
-  if (prefersReducedMotion) return;
-  if (certAutoSlideTimer) clearInterval(certAutoSlideTimer);
-  certAutoSlideTimer = setInterval(() => {
-    if (!isCertPaused) {
-      nextCertSlide();
-    }
-  }, 3500);
-}
-
-function initCertEvents() {
-  const container = document.getElementById("cert-carousel-container");
-  if (container) {
-    container.addEventListener("mouseenter", () => { isCertPaused = true; });
-    container.addEventListener("mouseleave", () => { isCertPaused = false; });
-  }
-
-  const prevBtn = document.getElementById("cert-prev-btn");
-  const nextBtn = document.getElementById("cert-next-btn");
-  if (prevBtn) prevBtn.addEventListener("click", prevCertSlide);
-  if (nextBtn) nextBtn.addEventListener("click", nextCertSlide);
-}
-
-// 6. Skills Tabs Switcher
+// 5. Skills
 function renderSkills(category) {
   const container = document.getElementById("skills-display-grid");
   if (!container) return;
 
-  const items = portfolioData.skills[category] || [];
-  container.innerHTML = items.map(skill => `
-    <div class="glass-card p-5 rounded-2xl border border-slate-800 hover:border-sky-500/30 space-y-2">
-      <div class="flex items-center justify-between gap-2">
-        <h4 class="font-display font-bold text-base text-white">
-          ${skill.name}
-        </h4>
-        <span class="px-2 py-0.5 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-300 font-mono text-[11px]">
-          ${skill.level}
-        </span>
+  const skills = portfolioData.skills[category] || [];
+  container.innerHTML = skills.map(skill => `
+    <article class="glass-card interactive-card rounded-2xl p-5" data-reveal-item>
+      <div class="flex items-center justify-between gap-3">
+        <h3 class="font-semibold text-slate-900">${skill.name}</h3>
+        <span class="rounded-full border border-slate-200 bg-white px-2 py-1 text-[11px] font-medium text-slate-600">${skill.level}</span>
       </div>
-      <p class="text-xs text-slate-300 leading-relaxed font-mono">
-        ${skill.desc}
-      </p>
-    </div>
-  `).join('');
+      <p class="mt-2 text-sm leading-relaxed text-slate-700">${skill.desc}</p>
+    </article>
+  `).join("");
 }
 
 function initSkillsTabs() {
   const tabs = document.querySelectorAll(".skill-tab");
+  const activeClasses = ["bg-slate-900", "text-white"];
+  const inactiveClasses = ["border", "border-slate-300", "bg-white", "text-slate-700"];
+
   tabs.forEach(tab => {
     tab.addEventListener("click", () => {
-      tabs.forEach(t => {
-        t.classList.remove("bg-gradient-to-r", "from-sky-500", "to-blue-600", "text-white");
-        t.classList.add("bg-slate-900/80", "text-slate-400");
-      });
-      tab.classList.add("bg-gradient-to-r", "from-sky-500", "to-blue-600", "text-white");
-      tab.classList.remove("bg-slate-900/80", "text-slate-400");
-
-      const category = tab.getAttribute("data-category");
-      renderSkills(category);
+      updateTabStyles(tabs, tab, activeClasses, inactiveClasses);
+      renderSkills(tab.getAttribute("data-category") || "ai");
+      initInteractiveCards();
     });
   });
 
   renderSkills("ai");
 }
 
-// 7. Copy Email with Confetti & Toast
+// 6. Copy Email CTA
 function initEmailCopy() {
-  const copyBtn = document.getElementById("copy-email-btn");
-  const copyFeedback = document.getElementById("copy-feedback-text");
-  if (!copyBtn) return;
+  const button = document.getElementById("copy-email-btn");
+  const feedback = document.getElementById("copy-feedback-text");
+  if (!button) return;
 
-  copyBtn.addEventListener("click", () => {
-    navigator.clipboard.writeText("sameulhasanbd@gmail.com");
-
-    if (window.confetti) {
-      try {
-        confetti({
-          particleCount: 60,
-          spread: 60,
-          origin: { y: 0.8 },
-          colors: ['#38bdf8', '#818cf8', '#34d399']
-        });
-      } catch (e) {}
-    }
-
-    if (copyFeedback) {
-      copyFeedback.textContent = "Email Copied!";
-      copyFeedback.classList.add("text-emerald-400");
-      setTimeout(() => {
-        copyFeedback.textContent = "Copy Email";
-        copyFeedback.classList.remove("text-emerald-400");
-      }, 2500);
+  button.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText("sameulhasanbd@gmail.com");
+      if (feedback) {
+        feedback.textContent = "Copied";
+        setTimeout(() => {
+          feedback.textContent = "Copy Email";
+        }, 1800);
+      }
+    } catch (error) {
+      if (feedback) feedback.textContent = "Copy unavailable";
     }
   });
 }
 
-// 8. Back to Top Button
+// 7. Back To Top
 function initBackToTop() {
-  const topBtn = document.getElementById("back-to-top-btn");
-  if (topBtn) {
-    topBtn.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "auto" : "smooth" });
-    });
-  }
+  const button = document.getElementById("back-to-top-btn");
+  if (!button) return;
+
+  button.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "auto" : "smooth" });
+  });
 }
 
-// Global Modal Close on Escape or Background Click
-window.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") closeProjectModal();
+// 8. GSAP Motion System
+function initInteractiveCards() {
+  if (prefersReducedMotion || !window.gsap) return;
+
+  document.querySelectorAll(".interactive-card").forEach(card => {
+    if (card.dataset.gsapBound === "true") return;
+    card.dataset.gsapBound = "true";
+
+    card.addEventListener("mouseenter", () => {
+      gsap.to(card, { y: -4, duration: 0.25, ease: "power2.out" });
+    });
+
+    card.addEventListener("mouseleave", () => {
+      gsap.to(card, { y: 0, duration: 0.25, ease: "power2.out" });
+    });
+  });
+}
+
+function initAnimations() {
+  if (prefersReducedMotion || !window.gsap) return;
+
+  if (window.ScrollTrigger) {
+    gsap.registerPlugin(ScrollTrigger);
+  }
+
+  const heroIntro = gsap.utils.toArray("[data-hero-intro]");
+  gsap.from(heroIntro, {
+    opacity: 0,
+    y: 22,
+    duration: 0.8,
+    stagger: 0.12,
+    ease: "power2.out"
+  });
+
+  const revealSections = gsap.utils.toArray("[data-reveal]");
+  revealSections.forEach(section => {
+    gsap.from(section, {
+      opacity: 0,
+      y: 20,
+      duration: 0.7,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: section,
+        start: "top 85%"
+      }
+    });
+  });
+
+  const staggerGroups = gsap.utils.toArray("[data-stagger]");
+  staggerGroups.forEach(group => {
+    const items = group.querySelectorAll("[data-reveal-item]");
+    if (!items.length) return;
+
+    gsap.from(items, {
+      opacity: 0,
+      y: 16,
+      duration: 0.55,
+      ease: "power2.out",
+      stagger: 0.08,
+      scrollTrigger: {
+        trigger: group,
+        start: "top 88%"
+      }
+    });
+  });
+
+  initInteractiveCards();
+}
+
+window.addEventListener("keydown", event => {
+  if (event.key === "Escape") closeProjectModal();
 });
 
-// Initialize on DOM Ready
 document.addEventListener("DOMContentLoaded", () => {
   typeRole();
   initNavigation();
   renderProjects();
   initProjectFilter();
-  renderCertificationsSlider();
-  initCertEvents();
   initSkillsTabs();
   initEmailCopy();
   initBackToTop();
+  initAnimations();
   lucide.createIcons();
 });
